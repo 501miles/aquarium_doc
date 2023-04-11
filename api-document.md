@@ -138,8 +138,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "name": "nick",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
+        "name": "nick"
     }
 }
 ```
@@ -172,13 +172,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /resetPwd
 
-> 需要Token: 否
+> 需要Token: 是
 
 > 请求参数:
 
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
-| username | string | Y | 用户名 |
 | old_password | string | Y | 旧密码 |
 | new_password | string | Y | 新密码 |
 
@@ -196,7 +195,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /saveOrder
 
-> 需要Token: 否
+> 需要Token: 是
 
 > 请求参数:
 
@@ -239,7 +238,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /switchOrder
 
-> 需要Token: 否
+> 需要Token: 是
 
 > 请求参数:
 
@@ -262,7 +261,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /searchOrder
 
-> 需要Token: 否
+> 需要Token: 是
 
 > 请求参数:
 
@@ -317,7 +316,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /orderDetail
 
-> 需要Token: 否
+> 需要Token: 是
 
 > 请求参数:
 
