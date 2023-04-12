@@ -114,6 +114,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | captcha_id | string | Y | 验证码id |
 | captcha_code | string | Y | 验证码 |
 
+
 > 响应参数: obj
 
 | 参数名 | 类型  | 说明 |
@@ -125,10 +126,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick"
 }
 ```
 > 响应示例:
@@ -138,8 +139,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
-        "name": "nick"
+        "name": "nick",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
     }
 }
 ```
@@ -180,6 +181,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- | --- |
 | old_password | string | Y | 旧密码 |
 | new_password | string | Y | 新密码 |
+
 
 > 响应参数: 无
 
@@ -222,7 +224,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | mark | string | N | 订单备注 |
 | pic_url | string | N | 产品3D展示图url |
 | point_list | object_array | N | 打孔数据 |
+&emsp;point_list.order_id | int | N | 订单id |
+&emsp;point_list.point_type | int | N | 类型: 0一般打孔 1鱼疏板 |
+&emsp;point_list.location | string | N | 打孔位置: 左右前后底 |
+&emsp;point_list.horizontal | string | N | 水平位置: 距左边测或距右边测 |
+&emsp;point_list.horizontal_distance | int | N | 水平位置距离(mm) |
+&emsp;point_list.vertical | string | N | 竖直位置: 距上边测或距下边测 |
+&emsp;point_list.vertical_distance | int | N | 竖直位置距离(mm) |
+&emsp;point_list.diameter | int | N | 直径(mm) |
 | steel_list | object_array | N | 拉筋数据 |
+&emsp;steel_list.order_id | int | N | 订单id |
+&emsp;steel_list.steel_type | string | N | 拉筋方式: 一体拉筋、双层拉筋 |
+&emsp;steel_list.width | int | N | 宽度(mm) |
+&emsp;steel_list.thickness | int | N | 厚度(mm) |
+&emsp;steel_list.count | int | N | 纵筋数量 |
+
 
 > 响应参数: 无
 
@@ -246,6 +262,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- | --- |
 | order_id | int | Y | 订单id |
 | type | int | Y | 0草稿 1正式 |
+
 
 > 响应参数: 无
 
@@ -274,6 +291,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | order_no | string | N | 订单编号 |
 | page | int | N | 页码，默认1 |
 | page_size | int | N | 每页条数，默认20 |
+
 
 > 响应参数: obj
 
@@ -324,6 +342,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- | --- |
 | order_id | int | N | 订单id |
 | order_no | string | N | 订单号 |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 9.查询订单详情
+
+> URL: /delOrder
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| order_id | int | N | 订单id |
+| order_no | string | N | 订单号 |
+
 
 > 响应参数: 无
 
