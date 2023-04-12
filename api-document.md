@@ -126,10 +126,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
-    "username": "nick"
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
@@ -224,7 +224,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | mark | string | N | 订单备注 |
 | pic_url | string | N | 产品3D展示图url |
 | point_list | object_array | N | 打孔数据 |
-&emsp;point_list.order_id | int | N | 订单id |
 &emsp;point_list.point_type | int | N | 类型: 0一般打孔 1鱼疏板 |
 &emsp;point_list.location | string | N | 打孔位置: 左右前后底 |
 &emsp;point_list.horizontal | string | N | 水平位置: 距左边测或距右边测 |
@@ -233,7 +232,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 &emsp;point_list.vertical_distance | int | N | 竖直位置距离(mm) |
 &emsp;point_list.diameter | int | N | 直径(mm) |
 | steel_list | object_array | N | 拉筋数据 |
-&emsp;steel_list.order_id | int | N | 订单id |
 &emsp;steel_list.steel_type | string | N | 拉筋方式: 一体拉筋、双层拉筋 |
 &emsp;steel_list.width | int | N | 宽度(mm) |
 &emsp;steel_list.thickness | int | N | 厚度(mm) |
@@ -244,10 +242,86 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-
+```json
+{
+    "source": "aaa",
+    "customer_nickname": "杰克马",
+    "length": 111,
+    "thickness": 444,
+    "fish_board_distance_from_bottom": 555,
+    "order_time": 1234567890,
+    "logo_location": "中间",
+    "need_point": false,
+    "mark": "sdfsdaf",
+    "color": "五彩斑斓",
+    "height": 333,
+    "need_steel": false,
+    "pic_url": "",
+    "point_list": [
+        {
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "point_type": 0,
+            "location": "左"
+        },
+        {
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "point_type": 0,
+            "location": "左",
+            "horizontal": "左"
+        },
+        {
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "point_type": 0,
+            "location": "左",
+            "horizontal": "左"
+        }
+    ],
+    "steel_list": [
+        {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        },
+        {
+            "width": 9630,
+            "thickness": 852,
+            "count": 741,
+            "steel_type": " 一体拉筋"
+        },
+        {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        }
+    ],
+    "filter_type": "裸缸",
+    "customer_tel": "135123456",
+    "width": 222,
+    "need_logo": false,
+    "draft": false
+}
+```
 > 响应示例:
 
-
+```json
+{
+    "msg": "",
+    "data": null,
+    "code": 0
+}
+```
 
 <br/><br/>
 ## 6.改变订单状态草稿<-->正式
