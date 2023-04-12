@@ -217,7 +217,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | thickness | int | N | 厚度(mm) |
 | fish_board_distance_from_bottom | int | N | 鱼梳板打孔距底面高度(mm) |
 | color | string | N | 玻璃胶颜色 |
-| need_logo | bool | N | 是否打表 |
+| need_logo | bool | N | 是否打标 |
 | logo_location | string | N | 打标位置 |
 | need_point | bool | N | 是否打孔 |
 | need_steel | bool | N | 是否拉筋 |
@@ -243,15 +243,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "order_time": 1234567890,
     "thickness": 444,
+    "logo_location": "中间",
     "fish_board_distance_from_bottom": 555,
-    "pic_url": "",
+    "color": "五彩斑斓",
+    "need_steel": false,
     "steel_list": [
         {
-            "width": 9630,
-            "thickness": 852,
             "count": 741,
-            "steel_type": " 一体拉筋"
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852
         },
         {
             "steel_type": " 一体拉筋",
@@ -260,40 +263,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
+            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
+            "count": 741
         }
     ],
-    "order_time": 1234567890,
-    "customer_nickname": "杰克马",
-    "length": 111,
-    "height": 333,
-    "color": "五彩斑斓",
-    "need_logo": false,
-    "need_point": false,
-    "filter_type": "裸缸",
     "draft": false,
-    "width": 222,
-    "source": "aaa",
-    "mark": "sdfsdaf",
+    "customer_nickname": "杰克马",
+    "customer_tel": "135123456",
     "point_list": [
         {
+            "rtical": "上",
+            "vertical_distance": 456,
             "diameter": 789,
             "location": "左",
             "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456
+            "horizontal_distance": 1230
         },
         {
-            "location": "左",
             "horizontal": "左",
             "horizontal_distance": 1230,
             "rtical": "上",
             "vertical_distance": 456,
-            "diameter": 789
+            "diameter": 789,
+            "location": "左"
         },
         {
             "vertical_distance": 456,
@@ -304,9 +298,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "rtical": "上"
         }
     ],
-    "customer_tel": "135123456",
-    "logo_location": "中间",
-    "need_steel": false
+    "height": 333,
+    "need_logo": false,
+    "need_point": false,
+    "width": 222,
+    "mark": "sdfsdaf",
+    "pic_url": "",
+    "filter_type": "裸缸",
+    "source": "aaa",
+    "length": 111
 }
 ```
 > 响应示例:
@@ -383,7 +383,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.thickness | int | 厚度(mm) |
 | &emsp;list.fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
 | &emsp;list.color | string | 玻璃胶颜色 |
-| &emsp;list.need_logo | bool | 是否打表 |
+| &emsp;list.need_logo | bool | 是否打标 |
 | &emsp;list.logo_location | string | 打标位置 |
 | &emsp;list.need_point | bool | 是否打孔 |
 | &emsp;list.need_steel | bool | 是否拉筋 |
