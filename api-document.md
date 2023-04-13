@@ -90,11 +90,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "status": 1
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -126,22 +126,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -243,16 +243,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "customer_nickname": "杰克马",
-    "height": 333,
-    "length": 111,
-    "pic_url": "",
-    "order_time": 1234567890,
-    "filter_type": "裸缸",
-    "thickness": 444,
     "fish_board_distance_from_bottom": 555,
     "need_logo": false,
-    "logo_location": "中间",
+    "need_point": false,
+    "need_steel": false,
+    "pic_url": "",
+    "order_time": 1234567890,
+    "draft": false,
+    "customer_nickname": "杰克马",
     "point_list": [
         {
             "location": "左",
@@ -263,50 +261,52 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 789
         },
         {
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230
-        },
-        {
             "horizontal": "左",
             "horizontal_distance": 1230,
             "rtical": "上",
             "vertical_distance": 456,
             "diameter": 789,
             "location": "左"
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
         }
     ],
     "mark": "sdfsdaf",
-    "draft": false,
-    "source": "aaa",
-    "customer_tel": "135123456",
-    "width": 222,
-    "color": "五彩斑斓",
-    "need_point": false,
-    "need_steel": false,
     "steel_list": [
         {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
             "thickness": 852,
-            "count": 741
-        },
-        {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
-            "thickness": 852,
-            "count": 741
-        },
-        {
             "count": 741,
             "steel_type": " 一体拉筋",
+            "width": 9630
+        },
+        {
+            "steel_type": " 一体拉筋",
             "width": 9630,
-            "thickness": 852
+            "thickness": 852,
+            "count": 741
+        },
+        {
+            "width": 9630,
+            "thickness": 852,
+            "count": 741,
+            "steel_type": " 一体拉筋"
         }
-    ]
+    ],
+    "customer_tel": "135123456",
+    "height": 333,
+    "color": "五彩斑斓",
+    "filter_type": "裸缸",
+    "thickness": 444,
+    "logo_location": "中间",
+    "source": "aaa",
+    "length": 111,
+    "width": 222
 }
 ```
 > 响应示例:
@@ -389,8 +389,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.need_steel | bool | 是否拉筋 |
 | &emsp;list.mark | string | 订单备注 |
 | &emsp;list.pic_url | string | 产品3D展示图url |
-| &emsp;list.point_list | object_array | 打孔数据 |
-| &emsp;list.steel_list | object_array | 拉筋数据 |
 
 > 请求示例:
 
@@ -414,7 +412,42 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | order_no | string | N | 订单号 |
 
 
-> 响应参数: 无
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | 订单id |
+| order_time | int | 购买日期unix时间戳 |
+| order_no | string | 订单编号 |
+| filter_type | string | 缸类型: 裸缸、背滤缸、侧滤缸 |
+| draft | bool | 是否为草稿 |
+| source | string | 来源平台 |
+| customer_nickname | string | 用户昵称 |
+| customer_tel | string | 用户手机号 |
+| length | int | 长度(mm) |
+| width | int | 宽度(mm) |
+| height | int | 高度(mm) |
+| thickness | int | 厚度(mm) |
+| fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
+| color | string | 玻璃胶颜色 |
+| need_logo | bool | 是否打标 |
+| logo_location | string | 打标位置 |
+| need_point | bool | 是否打孔 |
+| need_steel | bool | 是否拉筋 |
+| mark | string | 订单备注 |
+| pic_url | string | 产品3D展示图url |
+| point_list | object_array | 打孔数据 |
+| &emsp;point_list.location | string | 打孔位置: 左右前后底 |
+| &emsp;point_list.horizontal | string | 水平位置: 距左边测或距右边测 |
+| &emsp;point_list.horizontal_distance | int | 水平位置距离(mm) |
+| &emsp;point_list.vertical | string | 竖直位置: 距上边测或距下边测 |
+| &emsp;point_list.vertical_distance | int | 竖直位置距离(mm) |
+| &emsp;point_list.diameter | int | 直径(mm) |
+| steel_list | object_array | 拉筋数据 |
+| &emsp;steel_list.steel_type | string | 拉筋方式: 一体拉筋、双层拉筋 |
+| &emsp;steel_list.width | int | 宽度(mm) |
+| &emsp;steel_list.thickness | int | 厚度(mm) |
+| &emsp;steel_list.count | int | 纵筋数量 |
 
 > 请求示例:
 
