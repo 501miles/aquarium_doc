@@ -4,13 +4,10 @@
 
 说明：
 
-> 1.接口请求方式都是POST
+> 1.POST请求参数都是application/json
 >
 
-> 2.请求参数都是application/json
->
-
-> 3.请求响应格式如下
+> 2.POST请求响应格式如下
 >
 
 | 参数名 | 类型 | 说明 |
@@ -32,7 +29,7 @@
 }
 ```
 
-> 4.身份验证
+> 3.身份验证
 >
 
 如果接口需要验证Token，则需要将login接口返回的token设置在请求里，key名称是Authorization
@@ -69,6 +66,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /ping
 
+> Method: POST
+
 > 需要Token: 否
 
 > 请求参数: 无
@@ -90,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -102,6 +101,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 2.登录
 
 > URL: /login
+
+> Method: POST
 
 > 需要Token: 否
 
@@ -126,22 +127,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -149,6 +150,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 3.获取验证码
 
 > URL: /captcha
+
+> Method: POST
 
 > 需要Token: 否
 
@@ -173,6 +176,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /resetPwd
 
+> Method: POST
+
 > 需要Token: 是
 
 > 请求参数:
@@ -196,6 +201,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 5.保存订单
 
 > URL: /saveOrder
+
+> Method: POST
 
 > 需要Token: 是
 
@@ -243,15 +250,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "fish_board_distance_from_bottom": 555,
-    "need_logo": false,
-    "need_point": false,
-    "need_steel": false,
-    "pic_url": "",
-    "order_time": 1234567890,
-    "draft": false,
-    "customer_nickname": "杰克马",
+    "height": 333,
+    "logo_location": "中间",
+    "mark": "sdfsdaf",
     "point_list": [
+        {
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456
+        },
         {
             "location": "左",
             "horizontal": "左",
@@ -259,14 +269,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "rtical": "上",
             "vertical_distance": 456,
             "diameter": 789
-        },
-        {
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左"
         },
         {
             "location": "左",
@@ -277,13 +279,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 789
         }
     ],
-    "mark": "sdfsdaf",
     "steel_list": [
         {
-            "thickness": 852,
-            "count": 741,
             "steel_type": " 一体拉筋",
-            "width": 9630
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
         },
         {
             "steel_type": " 一体拉筋",
@@ -292,21 +293,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
-            "width": 9630,
             "thickness": 852,
             "count": 741,
-            "steel_type": " 一体拉筋"
+            "steel_type": " 一体拉筋",
+            "width": 9630
         }
     ],
-    "customer_tel": "135123456",
-    "height": 333,
-    "color": "五彩斑斓",
-    "filter_type": "裸缸",
-    "thickness": 444,
-    "logo_location": "中间",
-    "source": "aaa",
+    "order_time": 1234567890,
+    "draft": false,
     "length": 111,
-    "width": 222
+    "color": "五彩斑斓",
+    "pic_url": "",
+    "filter_type": "裸缸",
+    "width": 222,
+    "thickness": 444,
+    "need_point": false,
+    "need_steel": false,
+    "source": "aaa",
+    "customer_nickname": "杰克马",
+    "customer_tel": "135123456",
+    "fish_board_distance_from_bottom": 555,
+    "need_logo": false
 }
 ```
 > 响应示例:
@@ -323,6 +330,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 6.改变订单状态草稿<-->正式
 
 > URL: /switchOrder
+
+> Method: POST
 
 > 需要Token: 是
 
@@ -347,6 +356,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 7.查询订单列表
 
 > URL: /searchOrder
+
+> Method: POST
 
 > 需要Token: 是
 
@@ -401,6 +412,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ## 8.查询订单详情
 
 > URL: /orderDetail
+
+> Method: POST
 
 > 需要Token: 是
 
@@ -461,6 +474,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > URL: /delOrder
 
+> Method: POST
+
 > 需要Token: 是
 
 > 请求参数:
@@ -478,5 +493,34 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 > 响应示例:
 
 
+
+<br/><br/>
+## 10.图片预览
+
+> URL: /preview
+
+> Method: GET
+
+> 需要Token: 否
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| path | string | Y | 路径 |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+```json
+?path=3cT9XtF1nJtD/2501681355694.jpg
+```
+> 响应示例:
+
+```json
+IMAGE_DATA
+```
 
 <br/><br/>
