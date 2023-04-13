@@ -90,11 +90,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -136,12 +136,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -243,15 +243,57 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "customer_nickname": "杰克马",
     "height": 333,
+    "length": 111,
+    "pic_url": "",
     "order_time": 1234567890,
     "filter_type": "裸缸",
-    "customer_tel": "135123456",
-    "length": 111,
-    "width": 222,
     "thickness": 444,
-    "pic_url": "",
+    "fish_board_distance_from_bottom": 555,
+    "need_logo": false,
+    "logo_location": "中间",
+    "point_list": [
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        },
+        {
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230
+        },
+        {
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左"
+        }
+    ],
+    "mark": "sdfsdaf",
+    "draft": false,
+    "source": "aaa",
+    "customer_tel": "135123456",
+    "width": 222,
+    "color": "五彩斑斓",
+    "need_point": false,
+    "need_steel": false,
     "steel_list": [
+        {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        },
         {
             "steel_type": " 一体拉筋",
             "width": 9630,
@@ -263,48 +305,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852
-        },
-        {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
-            "thickness": 852,
-            "count": 741
-        }
-    ],
-    "need_steel": false,
-    "mark": "sdfsdaf",
-    "color": "五彩斑斓",
-    "need_logo": false,
-    "logo_location": "中间",
-    "need_point": false,
-    "draft": false,
-    "source": "aaa",
-    "customer_nickname": "杰克马",
-    "fish_board_distance_from_bottom": 555,
-    "point_list": [
-        {
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左"
-        },
-        {
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左"
-        },
-        {
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230
         }
     ]
 }
@@ -424,7 +424,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 9.查询订单详情
+## 9.删除订单
 
 > URL: /delOrder
 
