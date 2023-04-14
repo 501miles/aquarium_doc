@@ -56,7 +56,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | CodeWrongUserOrPass | 30 | 用户名或密码错误 |
 | CodeUserNotExist | 40 | 用户不存在 |
 | CodeUserAlreadyExist | 50 | 用户已存在 |
-| CodeUpAlreadyFocus | 60 | up主已关注 |
 | CodeDataNotExist | 70 | 数据不存在 |
 | CodeDataGetFailed | 80 | 数据获取失败 |
 | CodeExportDataFailed | 90 | 数据导出失败 |
@@ -89,11 +88,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -140,8 +139,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "name": "nick",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
+        "name": "nick"
     }
 }
 ```
@@ -254,16 +253,43 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "draft": false,
-    "thickness": 444,
-    "fish_board_distance_from_bottom": 555,
-    "need_logo": false,
-    "source": "aaa",
+    "order_time": 1234567890,
     "customer_nickname": "杰克马",
     "customer_tel": "135123456",
     "length": 111,
-    "need_point": false,
     "need_steel": false,
+    "filter_type": "裸缸",
+    "source": "aaa",
+    "thickness": 444,
+    "need_point": false,
+    "color": "五彩斑斓",
+    "need_logo": false,
+    "point_list": [
+        {
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左"
+        },
+        {
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左"
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        }
+    ],
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -284,40 +310,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         }
     ],
-    "filter_type": "裸缸",
-    "width": 222,
-    "height": 333,
     "logo_location": "中间",
     "mark": "sdfsdaf",
     "pic_url": "",
-    "order_time": 1234567890,
-    "color": "五彩斑斓",
-    "point_list": [
-        {
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        }
-    ]
+    "draft": false,
+    "width": 222,
+    "height": 333,
+    "fish_board_distance_from_bottom": 555
 }
 ```
 > 响应示例:
