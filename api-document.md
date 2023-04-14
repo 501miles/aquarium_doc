@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
-    "username": "nick"
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
@@ -244,13 +244,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 &emsp;steel_list.count | int | N | 纵筋数量 |
 
 
-> 响应参数: 无
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | 订单id |
 
 > 请求示例:
 
 ```json
 {
+    "length": 111,
+    "width": 222,
+    "pic_url": "",
+    "draft": false,
+    "customer_nickname": "杰克马",
+    "customer_tel": "135123456",
+    "need_steel": false,
     "point_list": [
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        },
         {
             "location": "左",
             "horizontal": "左",
@@ -266,54 +285,39 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "horizontal_distance": 1230,
             "rtical": "上",
             "vertical_distance": 456
-        },
-        {
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456
         }
     ],
-    "filter_type": "裸缸",
-    "source": "aaa",
-    "width": 222,
-    "height": 333,
-    "color": "五彩斑斓",
-    "need_steel": false,
-    "mark": "sdfsdaf",
-    "order_time": 1234567890,
-    "customer_tel": "135123456",
-    "thickness": 444,
-    "fish_board_distance_from_bottom": 555,
-    "need_logo": false,
-    "logo_location": "中间",
     "steel_list": [
         {
-            "thickness": 852,
-            "count": 741,
             "steel_type": " 一体拉筋",
-            "width": 9630
-        },
-        {
             "width": 9630,
             "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
+            "count": 741
         },
         {
             "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
             "count": 741
+        },
+        {
+            "count": 741,
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852
         }
     ],
-    "draft": false,
-    "customer_nickname": "杰克马",
-    "length": 111,
-    "need_point": false,
-    "pic_url": ""
+    "height": 333,
+    "fish_board_distance_from_bottom": 555,
+    "color": "五彩斑斓",
+    "logo_location": "中间",
+    "filter_type": "裸缸",
+    "thickness": 444,
+    "need_logo": false,
+    "mark": "sdfsdaf",
+    "order_time": 1234567890,
+    "source": "aaa",
+    "need_point": false
 }
 ```
 > 响应示例:
