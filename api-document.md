@@ -127,22 +127,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
     "username": "nick",
-    "password": "123456"
+    "password": "123456",
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
         "name": "nick"
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -254,32 +254,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "steel_list": [
-        {
-            "width": 9630,
-            "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
-        },
-        {
-            "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋",
-            "width": 9630
-        },
-        {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
-            "thickness": 852,
-            "count": 741
-        }
-    ],
-    "order_time": 1234567890,
-    "width": 222,
-    "need_logo": false,
+    "thickness": 444,
     "need_steel": false,
-    "pic_url": "",
-    "logo_location": "中间",
     "point_list": [
         {
             "location": "左",
@@ -290,33 +266,57 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 789
         },
         {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
             "vertical_distance": 456,
+            "diameter": 789
+        },
+        {
             "diameter": 789,
             "location": "左",
             "horizontal": "左",
             "horizontal_distance": 1230,
-            "rtical": "上"
-        },
-        {
-            "horizontal_distance": 1230,
             "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左"
+            "vertical_distance": 456
         }
     ],
+    "steel_list": [
+        {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        },
+        {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        },
+        {
+            "width": 9630,
+            "thickness": 852,
+            "count": 741,
+            "steel_type": " 一体拉筋"
+        }
+    ],
+    "order_time": 1234567890,
     "source": "aaa",
     "customer_nickname": "杰克马",
-    "height": 333,
-    "thickness": 444,
-    "color": "五彩斑斓",
-    "filter_type": "裸缸",
-    "mark": "sdfsdaf",
-    "draft": false,
+    "need_logo": false,
+    "pic_url": "",
     "customer_tel": "135123456",
-    "length": 111,
+    "width": 222,
     "fish_board_distance_from_bottom": 555,
+    "color": "五彩斑斓",
+    "logo_location": "中间",
+    "mark": "sdfsdaf",
+    "filter_type": "裸缸",
+    "draft": false,
+    "length": 111,
+    "height": 333,
     "need_point": false
 }
 ```
@@ -488,14 +488,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
-| id | int | N | 关键字 |
+| id | int | N | id |
 | aquarium_type | string | Y | 鱼缸类型 |
 | title | string | Y | 标题 |
 | content | string | Y | 内容 |
 | is_active | bool | N | 启用状态 |
 
 
-> 响应参数: 无
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | 问题id |
 
 > 请求示例:
 
@@ -520,9 +524,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | key_word | string | N | 关键字 |
 | aquarium_type | string | N | 鱼缸类型 |
 | is_active | bool | N | 启用状态 |
+| page | int | N | 页码，默认1 |
+| page_size | int | N | 每页条数，默认20 |
 
 
-> 响应参数: 无
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| count | int | 总条数 |
+| list | obj_array | 数据列表 |
+| &emsp;list.id | int | 问题id |
+| &emsp;list.created_time | int | 创建时间 |
+| &emsp;list.aquarium_type | string | 鱼缸类型 |
+| &emsp;list.title | string | 标题 |
+| &emsp;list.content | string | 内容 |
+| &emsp;list.is_active | bool | 启用状态 |
 
 > 请求示例:
 
