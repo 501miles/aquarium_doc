@@ -140,8 +140,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
-        "name": "nick"
+        "name": "nick",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
     }
 }
 ```
@@ -250,24 +250,49 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "draft": false,
-    "length": 111,
-    "color": "五彩斑斓",
-    "need_logo": false,
-    "logo_location": "中间",
-    "mark": "sdfsdaf",
-    "pic_url": "",
+    "need_steel": false,
     "order_time": 1234567890,
-    "need_point": false,
-    "height": 333,
-    "source": "aaa",
+    "filter_type": "裸缸",
+    "draft": false,
     "customer_nickname": "杰克马",
     "customer_tel": "135123456",
     "width": 222,
-    "thickness": 444,
+    "height": 333,
+    "pic_url": "",
+    "point_list": [
+        {
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上"
+        },
+        {
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左"
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        }
+    ],
+    "mark": "sdfsdaf",
+    "source": "aaa",
+    "length": 111,
     "fish_board_distance_from_bottom": 555,
-    "need_steel": false,
-    "filter_type": "裸缸",
+    "color": "五彩斑斓",
+    "need_logo": false,
+    "logo_location": "中间",
+    "need_point": false,
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -288,32 +313,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         }
     ],
-    "point_list": [
-        {
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        },
-        {
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456
-        }
-    ]
+    "thickness": 444
 }
 ```
 > 响应示例:
@@ -365,6 +365,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
+| draft | bool | N | 是否为草稿 |
 | source | string | N | 来源平台 |
 | customer_nickname | string | N | 用户昵称 |
 | customer_tel | string | N | 用户手机号 |
@@ -495,7 +496,88 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 10.图片预览
+## 10.保存问题
+
+> URL: /saveQuestion
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| id | int | N | 关键字 |
+| aquarium_type | string | Y | 鱼缸类型 |
+| title | string | Y | 标题 |
+| content | string | Y | 内容 |
+| is_active | bool | N | 启用状态 |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 11.查询问题列表
+
+> URL: /searchQuestion
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| key_word | string | N | 关键字 |
+| aquarium_type | string | N | 鱼缸类型 |
+| is_active | bool | N | 启用状态 |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 12.删除订单
+
+> URL: /delQuestion
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| question_id | int | Y | 问题id |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 13.图片预览
 
 > URL: /preview
 
