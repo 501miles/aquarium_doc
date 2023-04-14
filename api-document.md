@@ -89,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "status": 1
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
 }
 ```
 > 响应示例:
@@ -250,24 +250,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "need_steel": false,
-    "order_time": 1234567890,
-    "filter_type": "裸缸",
-    "draft": false,
-    "customer_nickname": "杰克马",
-    "customer_tel": "135123456",
-    "width": 222,
-    "height": 333,
+    "need_point": false,
     "pic_url": "",
     "point_list": [
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        },
         {
             "horizontal_distance": 1230,
             "rtical": "上",
@@ -283,16 +268,29 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "rtical": "上",
             "vertical_distance": 456,
             "diameter": 789
+        },
+        {
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456
         }
     ],
-    "mark": "sdfsdaf",
-    "source": "aaa",
-    "length": 111,
     "fish_board_distance_from_bottom": 555,
     "color": "五彩斑斓",
     "need_logo": false,
+    "width": 222,
+    "height": 333,
+    "thickness": 444,
+    "order_time": 1234567890,
+    "filter_type": "裸缸",
+    "source": "aaa",
+    "customer_tel": "135123456",
+    "length": 111,
     "logo_location": "中间",
-    "need_point": false,
+    "need_steel": false,
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -307,13 +305,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
             "thickness": 852,
-            "count": 741
+            "count": 741,
+            "steel_type": " 一体拉筋",
+            "width": 9630
         }
     ],
-    "thickness": 444
+    "draft": false,
+    "customer_nickname": "杰克马",
+    "mark": "sdfsdaf"
 }
 ```
 > 响应示例:
@@ -327,33 +327,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 ```
 
 <br/><br/>
-## 6.改变订单状态草稿<-->正式
-
-> URL: /switchOrder
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-| type | int | Y | 0草稿 1正式 |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 7.查询订单列表
+## 6.查询订单列表
 
 > URL: /searchOrder
 
@@ -410,7 +384,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 8.查询订单详情
+## 7.查询订单详情
 
 > URL: /orderDetail
 
@@ -471,7 +445,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 9.删除订单
+## 8.删除订单
 
 > URL: /delOrder
 
@@ -496,7 +470,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 10.保存问题
+## 9.保存问题
 
 > URL: /saveQuestion
 
@@ -525,7 +499,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 11.查询问题列表
+## 10.查询问题列表
 
 > URL: /searchQuestion
 
@@ -552,7 +526,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 12.删除订单
+## 11.删除订单
 
 > URL: /delQuestion
 
@@ -577,7 +551,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 13.图片预览
+## 12.图片预览
 
 > URL: /preview
 
