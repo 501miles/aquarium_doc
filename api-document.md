@@ -60,6 +60,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | CodeDataGetFailed | 80 | 数据获取失败 |
 | CodeExportDataFailed | 90 | 数据导出失败 |
 | CodeCaptchaGenFailed | 100 | 验证码生成失败 |
+| CodeWXQRCodeGenFailed | 110 | 微信小程序二维码生成失败 |
 
 ## 1.接口健康检查
 
@@ -253,12 +254,55 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "order_time": 1234567890,
     "source": "aaa",
-    "customer_nickname": "杰克马",
-    "thickness": 444,
-    "logo_location": "中间",
+    "color": "五彩斑斓",
     "need_point": false,
+    "mark": "sdfsdaf",
+    "pic_url": "",
+    "point_list": [
+        {
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456
+        },
+        {
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        }
+    ],
+    "filter_type": "裸缸",
+    "customer_tel": "135123456",
+    "length": 111,
+    "height": 333,
+    "fish_board_distance_from_bottom": 555,
+    "need_logo": false,
+    "customer_nickname": "杰克马",
+    "width": 222,
+    "thickness": 444,
+    "need_steel": false,
     "steel_list": [
+        {
+            "count": 741,
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852
+        },
         {
             "steel_type": " 一体拉筋",
             "width": 9630,
@@ -270,53 +314,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "thickness": 852,
             "count": 741,
             "steel_type": " 一体拉筋"
-        },
-        {
-            "width": 9630,
-            "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
-        }
-    ],
-    "order_time": 1234567890,
-    "filter_type": "裸缸",
-    "need_logo": false,
-    "length": 111,
-    "fish_board_distance_from_bottom": 555,
-    "height": 333,
-    "need_steel": false,
-    "mark": "sdfsdaf",
-    "point_list": [
-        {
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左"
-        },
-        {
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左"
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
         }
     ],
     "draft": false,
-    "width": 222,
-    "pic_url": "",
-    "customer_tel": "135123456",
-    "color": "五彩斑斓"
+    "logo_location": "中间"
 }
 ```
 > 响应示例:
@@ -648,7 +649,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 14.图片预览
+## 14.获取分享小程序码
+
+> URL: /getShareWXAppCode
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| order_id | int | Y | 订单id |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| qrcode_path | string | 二维码路径 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 15.图片预览
 
 > URL: /preview
 
