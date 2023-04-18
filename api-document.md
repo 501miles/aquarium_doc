@@ -253,10 +253,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "length": 111,
-    "height": 333,
+    "source": "aaa",
+    "customer_nickname": "杰克马",
     "thickness": 444,
-    "mark": "sdfsdaf",
+    "logo_location": "中间",
+    "need_point": false,
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -265,69 +266,68 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
+            "width": 9630,
             "thickness": 852,
             "count": 741,
-            "steel_type": " 一体拉筋",
-            "width": 9630
+            "steel_type": " 一体拉筋"
         },
         {
+            "width": 9630,
             "thickness": 852,
             "count": 741,
-            "steel_type": " 一体拉筋",
-            "width": 9630
-        }
-    ],
-    "color": "五彩斑斓",
-    "pic_url": "",
-    "source": "aaa",
-    "customer_nickname": "杰克马",
-    "fish_board_distance_from_bottom": 555,
-    "logo_location": "中间",
-    "need_point": false,
-    "point_list": [
-        {
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
-        },
-        {
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
-        },
-        {
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
+            "steel_type": " 一体拉筋"
         }
     ],
     "order_time": 1234567890,
     "filter_type": "裸缸",
-    "draft": false,
-    "customer_tel": "135123456",
-    "width": 222,
     "need_logo": false,
-    "need_steel": false
+    "length": 111,
+    "fish_board_distance_from_bottom": 555,
+    "height": 333,
+    "need_steel": false,
+    "mark": "sdfsdaf",
+    "point_list": [
+        {
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左"
+        },
+        {
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左"
+        },
+        {
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上"
+        }
+    ],
+    "draft": false,
+    "width": 222,
+    "pic_url": "",
+    "customer_tel": "135123456",
+    "color": "五彩斑斓"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "id": 10000
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -450,7 +450,47 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 8.删除订单
+## 8.复制产品页
+
+> URL: /showItem
+
+> Method: POST
+
+> 需要Token: 否
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| order_id | int | Y | 订单id |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| item_info | obj |  |
+| &emsp;item_info.filter_type | string | 缸类型: 裸缸、背滤缸、侧滤缸 |
+| &emsp;item_info.length | int | 长度(mm) |
+| &emsp;item_info.width | int | 宽度(mm) |
+| &emsp;item_info.height | int | 高度(mm) |
+| &emsp;item_info.color | string | 玻璃胶颜色 |
+| &emsp;item_info.pic_url | string | 产品3D展示图url |
+| company_info | obj |  |
+| &emsp;company_info.brief_introduction | string | 公司简介 |
+| &emsp;company_info.contact | string | 联系人 |
+| &emsp;company_info.tel | string | 联系电话 |
+| &emsp;company_info.qr_code | string | 二维码 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 9.删除订单
 
 > URL: /delOrder
 
@@ -475,7 +515,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 9.保存问题
+## 10.保存问题
 
 > URL: /saveQuestion
 
@@ -508,7 +548,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 10.查询问题列表
+## 11.查询问题列表
 
 > URL: /searchQuestion
 
@@ -549,7 +589,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 11.问题详情
+## 12.问题详情
 
 > URL: /questionDetail
 
@@ -583,7 +623,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 12.删除问题
+## 13.删除问题
 
 > URL: /delQuestion
 
@@ -608,7 +648,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 13.图片预览
+## 14.图片预览
 
 > URL: /preview
 
