@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
     "captcha_code": "963852",
-    "username": "nick",
-    "password": "123456"
+    "username": "nick"
 }
 ```
 > 响应示例:
@@ -254,28 +254,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "order_time": 1234567890,
-    "source": "aaa",
-    "color": "五彩斑斓",
-    "need_point": false,
-    "mark": "sdfsdaf",
-    "pic_url": "",
+    "filter_type": "裸缸",
+    "customer_tel": "135123456",
+    "height": 333,
     "point_list": [
         {
-            "diameter": 789,
             "location": "左",
             "horizontal": "左",
             "horizontal_distance": 1230,
             "rtical": "上",
-            "vertical_distance": 456
+            "vertical_distance": 456,
+            "diameter": 789
         },
         {
+            "rtical": "上",
+            "vertical_distance": 456,
             "diameter": 789,
             "location": "左",
             "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456
+            "horizontal_distance": 1230
         },
         {
             "location": "左",
@@ -286,22 +283,20 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 789
         }
     ],
-    "filter_type": "裸缸",
-    "customer_tel": "135123456",
-    "length": 111,
-    "height": 333,
-    "fish_board_distance_from_bottom": 555,
+    "color": "五彩斑斓",
     "need_logo": false,
-    "customer_nickname": "杰克马",
-    "width": 222,
-    "thickness": 444,
+    "need_point": false,
     "need_steel": false,
+    "draft": false,
+    "length": 111,
+    "width": 222,
+    "fish_board_distance_from_bottom": 555,
     "steel_list": [
         {
-            "count": 741,
             "steel_type": " 一体拉筋",
             "width": 9630,
-            "thickness": 852
+            "thickness": 852,
+            "count": 741
         },
         {
             "steel_type": " 一体拉筋",
@@ -310,13 +305,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
+            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
+            "count": 741
         }
     ],
-    "draft": false,
+    "pic_url": "",
+    "order_time": 1234567890,
+    "source": "aaa",
+    "customer_nickname": "杰克马",
+    "mark": "sdfsdaf",
+    "thickness": 444,
     "logo_location": "中间"
 }
 ```
@@ -678,7 +678,121 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 15.图片预览
+## 15.获取问题分类
+
+> URL: /getQuestionCategory
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数: 无
+
+> 响应参数: obj_array
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| name | string | 类型名 |
+| parent_id | int | 父级id |
+| selectable | bool | 是否可选 |
+| sub_category | obj_array | 子类型 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 16.获取玻璃材质分类
+
+> URL: /getGlassMaterial
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数: 无
+
+> 响应参数: list
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| name | string | 类型名 |
+| density | string | 密度 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 17.获取玻璃材质分类
+
+> URL: /getConfigData
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| key | string | N | 配置数据key |
+
+
+> 响应参数: list
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| name | string | key名 |
+| config_data | string | 配置数据 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 18.获取标准尺寸鱼缸信息
+
+> URL: /getStandardAquarium
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数: 无
+
+> 响应参数: list
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| length | int | 长度(mm) |
+| width | int | 宽度(mm) |
+| length | int | 高度(mm) |
+| thickness | int | 厚度(mm) |
+| price | int | 价格(分) 100=1元 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 19.图片预览
 
 > URL: /preview
 
