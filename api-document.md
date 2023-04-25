@@ -127,22 +127,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
-    "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick",
+    "password": "123456"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -254,25 +254,37 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "customer_nickname": "杰克马",
-    "customer_tel": "135123456",
+    "source": "aaa",
     "length": 111,
+    "thickness": 444,
+    "color": "五彩斑斓",
+    "need_logo": false,
+    "logo_location": "中间",
+    "pic_url": "",
+    "draft": false,
+    "height": 333,
+    "fish_board_distance_from_bottom": 555,
+    "need_point": false,
+    "need_steel": false,
+    "filter_type": "裸缸",
+    "customer_nickname": "杰克马",
+    "mark": "sdfsdaf",
     "point_list": [
         {
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左"
-        },
-        {
-            "vertical_distance": 456,
             "diameter": 789,
             "location": "左",
             "horizontal": "左",
             "horizontal_distance": 1230,
-            "rtical": "上"
+            "rtical": "上",
+            "vertical_distance": 456
+        },
+        {
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230
         },
         {
             "horizontal": "左",
@@ -283,6 +295,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": "左"
         }
     ],
+    "order_time": 1234567890,
+    "customer_tel": "135123456",
+    "width": 222,
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -297,27 +312,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
+            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741,
-            "steel_type": " 一体拉筋"
+            "count": 741
         }
-    ],
-    "filter_type": "裸缸",
-    "fish_board_distance_from_bottom": 555,
-    "color": "五彩斑斓",
-    "need_logo": false,
-    "logo_location": "中间",
-    "pic_url": "",
-    "draft": false,
-    "width": 222,
-    "thickness": 444,
-    "need_point": false,
-    "need_steel": false,
-    "mark": "sdfsdaf",
-    "source": "aaa",
-    "height": 333,
-    "order_time": 1234567890
+    ]
 }
 ```
 > 响应示例:
@@ -763,7 +763,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 18.获取标准尺寸鱼缸信息
+## 18.获取标准尺寸鱼缸信息列表
+
+> URL: /getStandardAquariumList
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数: 无
+
+> 响应参数: list
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| length | int | 长度(mm) |
+| width | int | 宽度(mm) |
+| length | int | 高度(mm) |
+| thickness | int | 厚度(mm) |
+| price | int | 价格(分) 100=1元 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 19.获取标准尺寸鱼缸信息
 
 > URL: /getStandardAquarium
 
@@ -792,7 +821,46 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 19.图片预览
+## 20.计算当前价格和运费并推荐标准尺寸鱼缸
+
+> URL: /calAndRecAquarium
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| length | int | Y | 长度(mm) |
+| width | int | Y | 宽度(mm) |
+| height | int | Y | 高度(mm) |
+| around_thickness | int | Y | 玻璃四面厚度(mm) |
+| bottom_thickness | int | Y | 玻璃底面厚度(mm) |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| calculated_price | int | 当前尺寸计算出的价格(分) |
+| freight | int | 运费(分) |
+| recommend_length | int | 推荐长度(mm) |
+| recommend_width | int | 推荐宽度(mm) |
+| recommend_height | int | 推荐高度(mm) |
+| recommend_thickness | int | 推荐厚度(mm) |
+| recommend_price | int | 推荐价格(分) 100=1元 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 21.图片预览
 
 > URL: /preview
 
