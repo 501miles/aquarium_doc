@@ -127,22 +127,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
-    "username": "nick"
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -217,13 +217,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | draft | bool | N | 是否为草稿 |
 | source | string | N | 来源平台 |
 | customer_nickname | string | N | 用户昵称 |
-| customer_tel | string | N | 用户手机号 |
 | length | int | N | 长度(mm) |
 | width | int | N | 宽度(mm) |
 | height | int | N | 高度(mm) |
-| thickness | int | N | 厚度(mm) |
+| around_thickness | int | N | 玻璃四面厚度(mm) |
+| bottom_thickness | int | N | 玻璃底面厚度(mm) |
+| glass_material | string | N | 玻璃材质 |
 | fish_board_distance_from_bottom | int | N | 鱼梳板打孔距底面高度(mm) |
 | color | string | N | 玻璃胶颜色 |
+| discount | int | N | 折扣(0-100) |
 | need_logo | bool | N | 是否打标 |
 | logo_location | string | N | 打标位置 |
 | need_point | bool | N | 是否打孔 |
@@ -239,8 +241,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 &emsp;point_list.diameter | int | N | 直径(mm) |
 | steel_list | object_array | N | 拉筋数据 |
 &emsp;steel_list.steel_type | string | N | 拉筋方式: 一体拉筋、双层拉筋 |
-&emsp;steel_list.width | int | N | 宽度(mm) |
-&emsp;steel_list.thickness | int | N | 厚度(mm) |
+&emsp;steel_list.glass_thickness | int | N | 纵拉筋玻璃厚度(mm) |
+&emsp;steel_list.location | string | N | 纵拉筋位置 |
 &emsp;steel_list.count | int | N | 纵筋数量 |
 
 
@@ -254,50 +256,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "order_time": 1234567890,
-    "draft": false,
-    "length": 111,
-    "point_list": [
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        },
-        {
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左"
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        }
-    ],
-    "customer_tel": "135123456",
-    "width": 222,
     "height": 333,
+    "thickness": 444,
+    "fish_board_distance_from_bottom": 555,
     "need_logo": false,
     "need_steel": false,
-    "pic_url": "",
-    "thickness": 444,
-    "color": "五彩斑斓",
-    "mark": "sdfsdaf",
-    "filter_type": "裸缸",
+    "order_time": 1234567890,
     "source": "aaa",
-    "customer_nickname": "杰克马",
-    "fish_board_distance_from_bottom": 555,
-    "logo_location": "中间",
-    "need_point": false,
+    "width": 222,
+    "mark": "sdfsdaf",
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -306,29 +273,64 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
-            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741
+            "count": 741,
+            "steel_type": " 一体拉筋"
         },
         {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
             "thickness": 852,
-            "count": 741
+            "count": 741,
+            "steel_type": " 一体拉筋",
+            "width": 9630
         }
-    ]
+    ],
+    "filter_type": "裸缸",
+    "logo_location": "中间",
+    "pic_url": "",
+    "customer_nickname": "杰克马",
+    "customer_tel": "135123456",
+    "need_point": false,
+    "point_list": [
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        }
+    ],
+    "draft": false,
+    "length": 111,
+    "color": "五彩斑斓"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "msg": "",
     "data": {
         "id": 10000
     },
-    "code": 0
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -349,6 +351,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | source | string | N | 来源平台 |
 | customer_nickname | string | N | 用户昵称 |
 | customer_tel | string | N | 用户手机号 |
+| created_time | int | N | 创建时间 |
 | filter_type | string | N | 缸类型: 裸缸、背滤缸、侧滤缸 |
 | order_no | string | N | 订单编号 |
 | page | int | N | 页码，默认1 |
@@ -363,18 +366,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | list | obj_array | 数据列表 |
 | &emsp;list.id | int | 订单id |
 | &emsp;list.order_time | int | 购买日期unix时间戳 |
+| &emsp;list.created_time | int | 创建时间unix时间戳 |
 | &emsp;list.order_no | string | 订单编号 |
 | &emsp;list.filter_type | string | 缸类型: 裸缸、背滤缸、侧滤缸 |
 | &emsp;list.draft | bool | 是否为草稿 |
 | &emsp;list.source | string | 来源平台 |
 | &emsp;list.customer_nickname | string | 用户昵称 |
-| &emsp;list.customer_tel | string | 用户手机号 |
 | &emsp;list.length | int | 长度(mm) |
 | &emsp;list.width | int | 宽度(mm) |
 | &emsp;list.height | int | 高度(mm) |
-| &emsp;list.thickness | int | 厚度(mm) |
+| &emsp;list.around_thickness | int | 玻璃四面厚度(mm) |
+| &emsp;list.bottom_thickness | int | 玻璃底面厚度(mm) |
+| &emsp;list.glass_material | string | 玻璃材质 |
 | &emsp;list.fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
 | &emsp;list.color | string | 玻璃胶颜色 |
+| &emsp;list.discount | int | 折扣(0-100) |
+| &emsp;list.price | int | 价格(分) |
+| &emsp;list.freight | int | 运费(分) |
 | &emsp;list.need_logo | bool | 是否打标 |
 | &emsp;list.logo_location | string | 打标位置 |
 | &emsp;list.need_point | bool | 是否打孔 |
@@ -412,36 +420,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- |
 | id | int | 订单id |
 | order_time | int | 购买日期unix时间戳 |
+| created_time | int | 创建时间unix时间戳 |
 | order_no | string | 订单编号 |
 | filter_type | string | 缸类型: 裸缸、背滤缸、侧滤缸 |
 | draft | bool | 是否为草稿 |
 | source | string | 来源平台 |
 | customer_nickname | string | 用户昵称 |
-| customer_tel | string | 用户手机号 |
 | length | int | 长度(mm) |
 | width | int | 宽度(mm) |
 | height | int | 高度(mm) |
-| thickness | int | 厚度(mm) |
+| around_thickness | int | 玻璃四面厚度(mm) |
+| bottom_thickness | int | 玻璃底面厚度(mm) |
+| glass_material | string | 玻璃材质 |
 | fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
 | color | string | 玻璃胶颜色 |
-| need_logo | bool | 是否打标 |
-| logo_location | string | 打标位置 |
-| need_point | bool | 是否打孔 |
-| need_steel | bool | 是否拉筋 |
-| mark | string | 订单备注 |
-| pic_url | string | 产品3D展示图url |
-| point_list | object_array | 打孔数据 |
-| &emsp;point_list.location | string | 打孔位置: 左右前后底 |
-| &emsp;point_list.horizontal | string | 水平位置: 距左边测或距右边测 |
-| &emsp;point_list.horizontal_distance | int | 水平位置距离(mm) |
-| &emsp;point_list.vertical | string | 竖直位置: 距上边测或距下边测 |
-| &emsp;point_list.vertical_distance | int | 竖直位置距离(mm) |
-| &emsp;point_list.diameter | int | 直径(mm) |
-| steel_list | object_array | 拉筋数据 |
-| &emsp;steel_list.steel_type | string | 拉筋方式: 一体拉筋、双层拉筋 |
-| &emsp;steel_list.width | int | 宽度(mm) |
-| &emsp;steel_list.thickness | int | 厚度(mm) |
-| &emsp;steel_list.count | int | 纵筋数量 |
+| discount | int | 折扣(0-100) |
 
 > 请求示例:
 
@@ -449,437 +442,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 > 响应示例:
 
 
-
-<br/><br/>
-## 8.复制产品页
-
-> URL: /showItem
-
-> Method: POST
-
-> 需要Token: 否
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| item_info | obj |  |
-| &emsp;item_info.filter_type | string | 缸类型: 裸缸、背滤缸、侧滤缸 |
-| &emsp;item_info.length | int | 长度(mm) |
-| &emsp;item_info.width | int | 宽度(mm) |
-| &emsp;item_info.height | int | 高度(mm) |
-| &emsp;item_info.color | string | 玻璃胶颜色 |
-| &emsp;item_info.pic_url | string | 产品3D展示图url |
-| company_info | obj |  |
-| &emsp;company_info.brief_introduction | string | 公司简介 |
-| &emsp;company_info.contact | string | 联系人 |
-| &emsp;company_info.tel | string | 联系电话 |
-| &emsp;company_info.qr_code | string | 二维码 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 9.删除订单
-
-> URL: /delOrder
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 10.保存问题
-
-> URL: /saveQuestion
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| id | int | N | id |
-| aquarium_type | string | Y | 鱼缸类型 |
-| content | string | Y | 内容 |
-| is_active | bool | N | 启用状态 |
-| relate_category | int_array | Y | 绑定的模块 |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | 问题id |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 11.查询问题列表
-
-> URL: /searchQuestion
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| key_word | string | N | 关键字 |
-| aquarium_type | string | N | 鱼缸类型 |
-| is_active | bool | N | 启用状态 |
-| page | int | N | 页码，默认1 |
-| page_size | int | N | 每页条数，默认20 |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| count | int | 总条数 |
-| list | obj_array | 数据列表 |
-| &emsp;list.id | int | 问题id |
-| &emsp;list.created_time | int | 创建时间 |
-| &emsp;list.aquarium_type | string | 鱼缸类型 |
-| &emsp;list.content | string | 内容 |
-| &emsp;list.is_active | bool | 启用状态 |
-| &emsp;list.created_time | int | 创建时间 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 12.问题详情
-
-> URL: /questionDetail
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| question_id | int | Y | 问题id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| aquarium_type | string | 鱼缸类型 |
-| content | string | 内容 |
-| is_active | bool | 启用状态 |
-| created_time | int | 创建时间 |
-| relate_category | int_array | 绑定的模块 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 13.删除问题
-
-> URL: /delQuestion
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| question_id | int | Y | 问题id |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 14.获取分享小程序码
-
-> URL: /getShareWXAppCode
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| qrcode_path | string | 二维码路径 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 15.获取问题分类
-
-> URL: /getQuestionCategory
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数: 无
-
-> 响应参数: obj_array
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| name | string | 类型名 |
-| parent_id | int | 父级id |
-| selectable | bool | 是否可选 |
-| sub_category | obj_array | 子类型 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 16.获取玻璃材质分类
-
-> URL: /getGlassMaterial
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数: 无
-
-> 响应参数: list
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| name | string | 类型名 |
-| density | string | 密度 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 17.获取配置参数
-
-> URL: /getConfigData
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| key | string | N | 配置数据key |
-
-
-> 响应参数: list
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| name | string | key名 |
-| config_data | string | 配置数据 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 18.获取标准尺寸鱼缸信息列表
-
-> URL: /getStandardAquariumList
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数: 无
-
-> 响应参数: list
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| length | int | 长度(mm) |
-| width | int | 宽度(mm) |
-| length | int | 高度(mm) |
-| thickness | int | 厚度(mm) |
-| price | int | 价格(分) 100=1元 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 19.计算当前价格和运费
-
-> URL: /calculatePrice
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| calculated_price | int | 当前尺寸计算出的价格(分) |
-| freight | int | 运费(分) |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 20.推荐最匹配的标准缸尺寸
-
-> URL: /recommendAquarium
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| order_id | int | Y | 订单id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| recommend_length | int | 推荐长度(mm) |
-| recommend_width | int | 推荐宽度(mm) |
-| recommend_height | int | 推荐高度(mm) |
-| recommend_thickness | int | 推荐厚度(mm) |
-| recommend_price | int | 推荐价格(分) 100=1元 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 21.图片预览
-
-> URL: /preview
-
-> Method: GET
-
-> 需要Token: 否
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| path | string | Y | 路径 |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-```text
-?path=3cT9XtF1nJtD/2501681355694.jpg
-```
-> 响应示例:
-
-```text
-IMAGE_DATA
-```
 
 <br/><br/>
