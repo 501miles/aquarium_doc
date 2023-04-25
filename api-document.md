@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
-    "username": "nick"
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
@@ -254,43 +254,35 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "filter_type": "裸缸",
+    "customer_nickname": "杰克马",
     "customer_tel": "135123456",
-    "height": 333,
+    "length": 111,
     "point_list": [
         {
-            "location": "左",
-            "horizontal": "左",
             "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
-        },
-        {
             "rtical": "上",
             "vertical_distance": 456,
             "diameter": 789,
             "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230
+            "horizontal": "左"
         },
         {
+            "vertical_distance": 456,
+            "diameter": 789,
             "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上"
+        },
+        {
             "horizontal": "左",
             "horizontal_distance": 1230,
             "rtical": "上",
             "vertical_distance": 456,
-            "diameter": 789
+            "diameter": 789,
+            "location": "左"
         }
     ],
-    "color": "五彩斑斓",
-    "need_logo": false,
-    "need_point": false,
-    "need_steel": false,
-    "draft": false,
-    "length": 111,
-    "width": 222,
-    "fish_board_distance_from_bottom": 555,
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -305,19 +297,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         },
         {
-            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741
+            "count": 741,
+            "steel_type": " 一体拉筋"
         }
     ],
+    "filter_type": "裸缸",
+    "fish_board_distance_from_bottom": 555,
+    "color": "五彩斑斓",
+    "need_logo": false,
+    "logo_location": "中间",
     "pic_url": "",
-    "order_time": 1234567890,
-    "source": "aaa",
-    "customer_nickname": "杰克马",
-    "mark": "sdfsdaf",
+    "draft": false,
+    "width": 222,
     "thickness": 444,
-    "logo_location": "中间"
+    "need_point": false,
+    "need_steel": false,
+    "mark": "sdfsdaf",
+    "source": "aaa",
+    "height": 333,
+    "order_time": 1234567890
 }
 ```
 > 响应示例:
@@ -732,7 +732,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 17.获取玻璃材质分类
+## 17.获取配置参数
 
 > URL: /getConfigData
 
