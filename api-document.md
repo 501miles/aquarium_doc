@@ -256,10 +256,44 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "need_point": false,
+    "need_steel": false,
+    "mark": "sdfsdaf",
+    "point_list": [
+        {
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456
+        },
+        {
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230,
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
+        },
+        {
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230
+        }
+    ],
+    "customer_nickname": "杰克马",
+    "height": 333,
+    "color": "五彩斑斓",
+    "length": 111,
+    "fish_board_distance_from_bottom": 555,
+    "logo_location": "中间",
+    "filter_type": "裸缸",
     "draft": false,
     "customer_tel": "135123456",
-    "width": 222,
-    "mark": "sdfsdaf",
     "steel_list": [
         {
             "steel_type": " 一体拉筋",
@@ -280,57 +314,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "count": 741
         }
     ],
-    "filter_type": "裸缸",
-    "height": 333,
+    "source": "aaa",
+    "width": 222,
     "thickness": 444,
-    "fish_board_distance_from_bottom": 555,
-    "pic_url": "",
     "order_time": 1234567890,
     "need_logo": false,
-    "need_point": false,
-    "source": "aaa",
-    "customer_nickname": "杰克马",
-    "length": 111,
-    "color": "五彩斑斓",
-    "logo_location": "中间",
-    "need_steel": false,
-    "point_list": [
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上"
-        },
-        {
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左"
-        },
-        {
-            "location": "左",
-            "horizontal": "左",
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789
-        }
-    ]
+    "pic_url": ""
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "id": 10000
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -556,10 +556,28 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-
+```json
+{
+    "aquarium_type": "裸缸",
+    "content": "问题描述内容",
+    "relate_category": [
+        1,
+        2,
+        3
+    ]
+}
+```
 > 响应示例:
 
-
+```json
+{
+    "code": 0,
+    "msg": "",
+    "data": {
+        "id": 11
+    }
+}
+```
 
 <br/><br/>
 ## 11.查询问题列表
