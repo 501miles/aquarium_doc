@@ -89,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -256,38 +256,42 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "need_logo": false,
-    "logo_location": "中间",
-    "width": 222,
+    "order_time": 1234567890,
+    "filter_type": "裸缸",
+    "height": 333,
     "thickness": 444,
-    "pic_url": "",
     "steel_list": [
         {
+            "steel_type": " 一体拉筋",
+            "width": 9630,
+            "thickness": 852,
+            "count": 741
+        },
+        {
+            "thickness": 852,
             "count": 741,
             "steel_type": " 一体拉筋",
-            "width": 9630,
-            "thickness": 852
+            "width": 9630
         },
         {
-            "steel_type": " 一体拉筋",
             "width": 9630,
             "thickness": 852,
-            "count": 741
-        },
-        {
-            "steel_type": " 一体拉筋",
-            "width": 9630,
-            "thickness": 852,
-            "count": 741
+            "count": 741,
+            "steel_type": " 一体拉筋"
         }
     ],
-    "filter_type": "裸缸",
-    "mark": "sdfsdaf",
     "customer_nickname": "杰克马",
-    "customer_tel": "135123456",
-    "height": 333,
-    "color": "五彩斑斓",
+    "logo_location": "中间",
+    "need_point": false,
     "point_list": [
+        {
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789,
+            "location": "左",
+            "horizontal": "左",
+            "horizontal_distance": 1230
+        },
         {
             "location": "左",
             "horizontal": "左",
@@ -297,40 +301,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 789
         },
         {
-            "horizontal_distance": 1230,
-            "rtical": "上",
-            "vertical_distance": 456,
-            "diameter": 789,
-            "location": "左",
-            "horizontal": "左"
-        },
-        {
-            "vertical_distance": 456,
-            "diameter": 789,
             "location": "左",
             "horizontal": "左",
             "horizontal_distance": 1230,
-            "rtical": "上"
+            "rtical": "上",
+            "vertical_distance": 456,
+            "diameter": 789
         }
     ],
-    "draft": false,
     "source": "aaa",
+    "customer_tel": "135123456",
+    "length": 111,
+    "width": 222,
+    "pic_url": "",
+    "draft": false,
     "fish_board_distance_from_bottom": 555,
-    "need_point": false,
+    "color": "五彩斑斓",
+    "need_logo": false,
     "need_steel": false,
-    "order_time": 1234567890,
-    "length": 111
+    "mark": "sdfsdaf"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 10000
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -432,6 +432,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | around_thickness | int | 玻璃四面厚度(mm) |
 | bottom_thickness | int | 玻璃底面厚度(mm) |
 | glass_material | string | 玻璃材质 |
+| glass_material_density | string | 玻璃材质密度 |
 | fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
 | color | string | 玻璃胶颜色 |
 | discount | int | 折扣(0-100) |
@@ -629,12 +630,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "count": 12,
         "list": [
             {
+                "id": 14,
                 "created_time": 1682500967,
                 "aquarium_type": "裸缸",
                 "content": "问题描述内容",
@@ -658,25 +659,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "高度"
                     }
-                ],
-                "id": 14
+                ]
             },
             {
-                "aquarium_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false,
                 "relate_category": [
                     {
+                        "question_category_name": "是否打标",
                         "id": 32,
                         "question_id": 13,
-                        "question_category_id": 6,
-                        "question_category_name": "是否打标"
+                        "question_category_id": 6
                     },
                     {
+                        "question_id": 13,
                         "question_category_id": 7,
                         "question_category_name": "是否打标",
-                        "id": 33,
-                        "question_id": 13
+                        "id": 33
                     },
                     {
                         "id": 34,
@@ -686,10 +683,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     }
                 ],
                 "id": 13,
-                "created_time": 1682500882
+                "created_time": 1682500882,
+                "aquarium_type": "裸缸",
+                "content": "问题描述内容",
+                "is_active": false
             }
         ]
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -738,6 +739,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
+        "id": 14,
+        "created_time": 1682500967,
+        "aquarium_type": "裸缸",
         "content": "问题描述内容",
         "is_active": false,
         "relate_category": [
@@ -748,21 +752,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
-                "question_category_id": 7,
-                "question_category_name": "宽度",
                 "id": 36,
-                "question_id": 14
+                "question_id": 14,
+                "question_category_id": 7,
+                "question_category_name": "宽度"
             },
             {
-                "id": 37,
-                "question_id": 14,
                 "question_category_id": 8,
-                "question_category_name": "高度"
+                "question_category_name": "高度",
+                "id": 37,
+                "question_id": 14
             }
-        ],
-        "id": 14,
-        "created_time": 1682500967,
-        "aquarium_type": "裸缸"
+        ]
     }
 }
 ```
