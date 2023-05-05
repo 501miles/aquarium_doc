@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
 }
 ```
 > 响应示例:
@@ -213,17 +213,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | id | int | N | 订单id |
 | order_time | int | N | 购买日期unix时间戳 |
 | order_no | string | N | 订单编号 |
-| filter_type | int | N | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
+| tank_type | int | N | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
 | draft | bool | N | 是否为草稿 |
 | source | int | N | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | customer_nickname | string | N | 用户昵称 |
 | length | int | N | 长度(mm) |
 | width | int | N | 宽度(mm) |
 | height | int | N | 高度(mm) |
-| around_thickness | int | N | 玻璃四面厚度(mm) |
+| sides_thickness | int | N | 玻璃四面厚度(mm) |
 | bottom_thickness | int | N | 玻璃底面厚度(mm) |
 | glass_material_id | int | N | 玻璃材质id |
-| fish_board_distance_from_bottom | int | N | 鱼梳板打孔距底面高度(mm) |
+| btn_comb_distance | int | N | 鱼梳板打孔距底面高度(mm) |
 | glass_glue_color | int | N | 玻璃胶颜色枚举：0->透明，1->黑色 |
 | discount | int | N | 折扣(0-100) |
 | need_logo | bool | N | 是否打标 |
@@ -256,55 +256,55 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "discount": 70,
+    "need_stiffener": true,
+    "glass_glue_color": 0,
     "order_time": 1683832500000,
-    "draft": false,
-    "stiffener_list": [
-        {
-            "vertical_glass_thickness": 8,
-            "vertical_count": 2,
-            "stiffener_type": 0,
-            "vertical_location": 0
-        }
-    ],
+    "mark": "备注",
     "hole_list": [
         {
+            "vertical_distance": 100,
+            "vertical": 0,
             "horizontal_distance": 100,
             "horizontal": 0,
             "location": 0,
-            "diameter": 100,
-            "vertical_distance": 100,
-            "vertical": 0
+            "diameter": 100
         }
     ],
-    "glass_material_id": 1,
-    "around_thickness": 8,
-    "length": 600,
-    "discount": 70,
-    "glass_glue_color": 0,
-    "height": 600,
-    "width": 600,
     "need_hole": true,
-    "need_stiffener": true,
-    "customer_nickname": "用户昵称",
-    "source": 1,
-    "filter_type": 1,
-    "mark": "备注",
-    "freight": 0,
-    "logo_location": 0,
     "need_logo": true,
+    "length": 600,
+    "source": 1,
+    "order_no": "202305041003",
+    "stiffener_list": [
+        {
+            "stiffener_type": 0,
+            "vertical_location": 0,
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2
+        }
+    ],
+    "logo_location": 0,
+    "glass_material_id": 1,
+    "sides_thickness": 8,
+    "width": 600,
+    "draft": false,
     "bottom_thickness": 8,
-    "order_no": "202305041003"
+    "height": 600,
+    "customer_nickname": "用户昵称",
+    "tank_type": 1,
+    "freight": 0
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "id": 10000
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -326,7 +326,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | customer_nickname | string | N | 用户昵称 |
 | customer_tel | string | N | 用户手机号 |
 | created_time | int | N | 创建时间 |
-| filter_type | int | N | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
+| tank_type | int | N | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
 | order_no | string | N | 订单编号 |
 | page | int | N | 页码，默认1 |
 | page_size | int | N | 每页条数，默认20 |
@@ -342,17 +342,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.created_time | int | 创建时间unix时间戳 |
 | &emsp;list.order_time | int | 购买日期unix时间戳 |
 | &emsp;list.order_no | string | 订单编号 |
-| &emsp;list.filter_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
+| &emsp;list.tank_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
 | &emsp;list.draft | bool | 是否为草稿 |
 | &emsp;list.source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | &emsp;list.customer_nickname | string | 用户昵称 |
 | &emsp;list.length | int | 长度(mm) |
 | &emsp;list.width | int | 宽度(mm) |
 | &emsp;list.height | int | 高度(mm) |
-| &emsp;list.around_thickness | int | 玻璃四面厚度(mm) |
+| &emsp;list.sides_thickness | int | 玻璃四面厚度(mm) |
 | &emsp;list.bottom_thickness | int | 玻璃底面厚度(mm) |
 | &emsp;list.glass_material_id | int | 玻璃材质id |
-| &emsp;list.fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
+| &emsp;list.btn_comb_distance | int | 鱼梳板打孔距底面高度(mm) |
 | &emsp;list.glass_glue_color | int | 玻璃胶颜色枚举：0->透明，1->黑色 |
 | &emsp;list.discount | int | 折扣(0-100) |
 | &emsp;list.need_logo | bool | 是否打标 |
@@ -394,17 +394,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | created_time | int | 创建时间unix时间戳 |
 | order_time | int | 购买日期unix时间戳 |
 | order_no | string | 订单编号 |
-| filter_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
+| tank_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
 | draft | bool | 是否为草稿 |
 | source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | customer_nickname | string | 用户昵称 |
 | length | int | 长度(mm) |
 | width | int | 宽度(mm) |
 | height | int | 高度(mm) |
-| around_thickness | int | 玻璃四面厚度(mm) |
+| sides_thickness | int | 玻璃四面厚度(mm) |
 | bottom_thickness | int | 玻璃底面厚度(mm) |
 | glass_material_id | int | 玻璃材质id |
-| fish_board_distance_from_bottom | int | 鱼梳板打孔距底面高度(mm) |
+| btn_comb_distance | int | 鱼梳板打孔距底面高度(mm) |
 | glass_glue_color | int | 玻璃胶颜色枚举：0->透明，1->黑色 |
 | discount | int | 折扣(0-100) |
 | need_logo | bool | 是否打标 |
@@ -454,13 +454,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | item_info | obj |  |
-| &emsp;item_info.filter_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
+| &emsp;item_info.tank_type | int | 缸类型枚举: 0->裸缸、1->背滤缸、2->侧滤缸 |
 | &emsp;item_info.length | int | 长度(mm) |
 | &emsp;item_info.width | int | 宽度(mm) |
 | &emsp;item_info.height | int | 高度(mm) |
 | &emsp;item_info.glass_glue_color | int | 玻璃胶颜色枚举：0->透明，1->黑色 |
 | &emsp;item_info.pic_3d_url | string | 产品3D展示图url |
-| &emsp;item_info.around_thickness | int | 玻璃四面厚度(mm) |
+| &emsp;item_info.sides_thickness | int | 玻璃四面厚度(mm) |
 | &emsp;item_info.bottom_thickness | int | 玻璃底面厚度(mm) |
 | &emsp;item_info.glass_material | string | 玻璃材质 |
 | &emsp;item_info.glass_material_id | int | 玻璃材质id |
@@ -609,8 +609,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "page_size": 2,
-    "page": 1
+    "page": 1,
+    "page_size": 2
 }
 ```
 > 响应示例:
@@ -623,6 +623,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
+                "id": 14,
+                "created_time": 1682500967,
+                "aquarium_type": "裸缸",
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
@@ -632,33 +636,30 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "长度"
                     },
                     {
-                        "question_category_id": 7,
-                        "question_category_name": "宽度",
                         "id": 36,
-                        "question_id": 14
+                        "question_id": 14,
+                        "question_category_id": 7,
+                        "question_category_name": "宽度"
                     },
                     {
+                        "question_category_name": "高度",
                         "id": 37,
                         "question_id": 14,
-                        "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_id": 8
                     }
-                ],
-                "id": 14,
-                "created_time": 1682500967,
-                "aquarium_type": "裸缸",
-                "content": "问题描述内容"
+                ]
             },
             {
+                "created_time": 1682500882,
                 "aquarium_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_id": 6,
                         "question_category_name": "是否打标",
                         "id": 32,
-                        "question_id": 13
+                        "question_id": 13,
+                        "question_category_id": 6
                     },
                     {
                         "question_category_id": 7,
@@ -667,14 +668,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_id": 13
                     },
                     {
+                        "id": 34,
                         "question_id": 13,
                         "question_category_id": 8,
-                        "question_category_name": "是否打标",
-                        "id": 34
+                        "question_category_name": "是否打标"
                     }
                 ],
-                "id": 13,
-                "created_time": 1682500882
+                "id": 13
             }
         ]
     }
@@ -739,16 +739,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
-                "question_id": 14,
                 "question_category_id": 7,
                 "question_category_name": "宽度",
-                "id": 36
+                "id": 36,
+                "question_id": 14
             },
             {
+                "id": 37,
                 "question_id": 14,
                 "question_category_id": 8,
-                "question_category_name": "高度",
-                "id": 37
+                "question_category_name": "高度"
             }
         ]
     }
