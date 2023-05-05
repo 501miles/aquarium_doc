@@ -89,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "status": 1
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
 }
 ```
 > 响应示例:
@@ -256,56 +256,50 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "order_no": "202305041003",
-    "discount": 70,
-    "need_logo": true,
-    "width": 600,
-    "length": 600,
-    "customer_nickname": "用户昵称",
-    "need_stiffener": true,
-    "glass_glue_color": 0,
-    "bottom_thickness": 8,
-    "height": 600,
-    "source": "1",
-    "filter_type": "1",
-    "freight": 0,
-    "draft": false,
     "hole_list": [
         {
-            "location": 0,
             "diameter": 100,
             "vertical_distance": 100,
             "vertical": 0,
             "horizontal_distance": 100,
-            "horizontal": 0
+            "horizontal": 0,
+            "location": 0
         }
     ],
-    "need_hole": true,
-    "glass_material_id": 1,
+    "need_stiffener": true,
+    "bottom_thickness": 8,
     "around_thickness": 8,
+    "discount": 70,
+    "need_logo": true,
+    "height": 600,
+    "source": 1,
+    "mark": "备注",
     "stiffener_list": [
         {
-            "vertical_count": 2,
             "stiffener_type": 0,
             "vertical_location": 0,
-            "vertical_glass_thickness": 8
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2
         }
     ],
     "logo_location": 0,
+    "length": 600,
+    "customer_nickname": "用户昵称",
+    "filter_type": 1,
     "order_time": 1683832500000,
-    "mark": "备注"
+    "freight": 0,
+    "draft": false,
+    "need_hole": true,
+    "glass_glue_color": 0,
+    "glass_material_id": 1,
+    "width": 600,
+    "order_no": "202305041003"
 }
 ```
 > 响应示例:
 
 ```json
-{
-    "msg": "",
-    "data": {
-        "id": 10000
-    },
-    "code": 0
-}
+null
 ```
 
 <br/><br/>
@@ -544,28 +538,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-```json
-{
-    "relate_category": [
-        6,
-        7,
-        8
-    ],
-    "aquarium_type": "裸缸",
-    "content": "问题描述内容"
-}
-```
+
 > 响应示例:
 
-```json
-{
-    "code": 0,
-    "msg": "",
-    "data": {
-        "id": 11
-    }
-}
-```
+
 
 <br/><br/>
 ## 11.查询问题列表
@@ -607,79 +583,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-```json
-{
-    "page": 1,
-    "page_size": 2
-}
-```
+
 > 响应示例:
 
-```json
-{
-    "code": 0,
-    "msg": "",
-    "data": {
-        "count": 12,
-        "list": [
-            {
-                "aquarium_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false,
-                "relate_category": [
-                    {
-                        "id": 35,
-                        "question_id": 14,
-                        "question_category_id": 6,
-                        "question_category_name": "长度"
-                    },
-                    {
-                        "question_category_id": 7,
-                        "question_category_name": "宽度",
-                        "id": 36,
-                        "question_id": 14
-                    },
-                    {
-                        "question_category_name": "高度",
-                        "id": 37,
-                        "question_id": 14,
-                        "question_category_id": 8
-                    }
-                ],
-                "id": 14,
-                "created_time": 1682500967
-            },
-            {
-                "id": 13,
-                "created_time": 1682500882,
-                "aquarium_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false,
-                "relate_category": [
-                    {
-                        "question_category_name": "是否打标",
-                        "id": 32,
-                        "question_id": 13,
-                        "question_category_id": 6
-                    },
-                    {
-                        "question_category_id": 7,
-                        "question_category_name": "是否打标",
-                        "id": 33,
-                        "question_id": 13
-                    },
-                    {
-                        "question_category_name": "是否打标",
-                        "id": 34,
-                        "question_id": 13,
-                        "question_category_id": 8
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
+
 
 <br/><br/>
 ## 12.问题详情
@@ -714,46 +621,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-```json
-{
-    "question_id": 14
-}
-```
+
 > 响应示例:
 
-```json
-{
-    "code": 0,
-    "msg": "",
-    "data": {
-        "aquarium_type": "裸缸",
-        "content": "问题描述内容",
-        "is_active": false,
-        "relate_category": [
-            {
-                "question_category_name": "长度",
-                "id": 35,
-                "question_id": 14,
-                "question_category_id": 6
-            },
-            {
-                "id": 36,
-                "question_id": 14,
-                "question_category_id": 7,
-                "question_category_name": "宽度"
-            },
-            {
-                "id": 37,
-                "question_id": 14,
-                "question_category_id": 8,
-                "question_category_name": "高度"
-            }
-        ],
-        "id": 14,
-        "created_time": 1682500967
-    }
-}
-```
+
 
 <br/><br/>
 ## 13.删除问题
@@ -1006,13 +877,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 > 请求示例:
 
-```text
-?path=3cT9XtF1nJtD/2501681355694.jpg
-```
+
 > 响应示例:
 
-```text
-IMAGE_DATA
-```
+
 
 <br/><br/>
