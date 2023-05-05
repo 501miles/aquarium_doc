@@ -140,8 +140,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "name": "nick",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
+        "name": "nick"
     }
 }
 ```
@@ -235,9 +235,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | pic_3d_url | string | N | 产品3D展示图url |
 | hole_list | object_array | N | 打孔数据 |
 &emsp;hole_list.location | int | N | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
-&emsp;hole_list.horizontal_location | int | N | 水平位置枚举: 0->左边测，1->右边测 |
+&emsp;hole_list.horizontal_location | int | N | 水平位置枚举: 0->左侧边，1->右侧边 |
 &emsp;hole_list.horizontal_distance | int | N | 水平位置距离(mm) |
-&emsp;hole_list.vertical_location | int | N | 竖直位置枚举: 0->上边测，1->下边测 |
+&emsp;hole_list.vertical_location | int | N | 竖直位置枚举: 0->上侧边，1->下侧边 |
 &emsp;hole_list.vertical_distance | int | N | 竖直位置距离(mm) |
 &emsp;hole_list.diameter | int | N | 直径(mm) |
 | stretch_list | object_array | N | 拉筋数据 |
@@ -257,25 +257,28 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "height": 600,
+    "width": 600,
+    "length": 600,
+    "draft": false,
+    "need_hole": true,
+    "glass_glue_color": 0,
+    "bottom_thickness": 8,
     "glass_material_id": 1,
+    "tank_type": 1,
+    "mark": "备注",
     "customer_nickname": "用户昵称",
     "order_no": "202305041003",
     "order_time": 1683832500000,
+    "freight": 0,
     "stretch_list": [
         {
+            "stretch_type": 0,
             "vertical_location": 0,
             "vertical_glass_thickness": 8,
-            "vertical_count": 2,
-            "stretch_type": 0
+            "vertical_count": 2
         }
     ],
-    "discount": 70,
-    "glass_glue_color": 0,
-    "bottom_thickness": 8,
-    "sides_thickness": 8,
-    "length": 600,
-    "source": 1,
-    "mark": "备注",
     "hole_list": [
         {
             "diameter": 100,
@@ -286,14 +289,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": 0
         }
     ],
+    "sides_thickness": 8,
     "need_logo": true,
-    "draft": false,
+    "source": 1,
+    "discount": 70,
     "need_stretch": true,
-    "width": 600,
-    "height": 600,
-    "tank_type": 1,
-    "freight": 0,
-    "need_hole": true,
     "logo_location": 0
 }
 ```
@@ -418,9 +418,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | pic_3d_url | string | 产品3D展示图url |
 | hole_list | object_array | 打孔数据 |
 | &emsp;hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
-| &emsp;hole_list.horizontal_location | int | 水平位置枚举: 0->左边测，1->右边测 |
+| &emsp;hole_list.horizontal_location | int | 水平位置枚举: 0->左侧边，1->右侧边 |
 | &emsp;hole_list.horizontal_distance | int | 水平位置距离(mm) |
-| &emsp;hole_list.vertical_location | int | 竖直位置枚举: 0->上边测，1->下边测 |
+| &emsp;hole_list.vertical_location | int | 竖直位置枚举: 0->上侧边，1->下侧边 |
 | &emsp;hole_list.vertical_distance | int | 竖直位置距离(mm) |
 | &emsp;hole_list.diameter | int | 直径(mm) |
 | stretch_list | object_array | 拉筋数据 |
@@ -470,9 +470,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;item_info.glass_material_density | string | 玻璃材质密度 |
 | &emsp;item_info.hole_list | object_array | 打孔数据 |
 | &emsp;&emsp;item_info.hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
-| &emsp;&emsp;item_info.hole_list.horizontal_location | int | 水平位置枚举: 0->左边测，1->右边测 |
+| &emsp;&emsp;item_info.hole_list.horizontal_location | int | 水平位置枚举: 0->左侧边，1->右侧边 |
 | &emsp;&emsp;item_info.hole_list.horizontal_distance | int | 水平位置距离(mm) |
-| &emsp;&emsp;item_info.hole_list.vertical_location | int | 竖直位置枚举: 0->上边测，1->下边测 |
+| &emsp;&emsp;item_info.hole_list.vertical_location | int | 竖直位置枚举: 0->上侧边，1->下侧边 |
 | &emsp;&emsp;item_info.hole_list.vertical_distance | int | 竖直位置距离(mm) |
 | &emsp;&emsp;item_info.hole_list.diameter | int | 直径(mm) |
 | &emsp;item_info.stretch_list | object_array | 拉筋数据 |
@@ -619,18 +619,20 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "count": 12,
         "list": [
             {
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "id": 35,
                         "question_id": 14,
                         "question_category_id": 6,
-                        "question_category_name": "长度"
+                        "question_category_name": "长度",
+                        "id": 35
                     },
                     {
                         "id": 36,
@@ -639,20 +641,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "宽度"
                     },
                     {
+                        "question_category_name": "高度",
                         "id": 37,
                         "question_id": 14,
-                        "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_id": 8
                     }
                 ],
                 "id": 14,
                 "created_time": 1682500967,
-                "tank_type": "裸缸",
-                "content": "问题描述内容"
+                "tank_type": "裸缸"
             },
             {
-                "content": "问题描述内容",
-                "is_active": false,
                 "relate_category": [
                     {
                         "id": 32,
@@ -661,25 +660,26 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     },
                     {
+                        "id": 33,
                         "question_id": 13,
                         "question_category_id": 7,
-                        "question_category_name": "是否打标",
-                        "id": 33
+                        "question_category_name": "是否打标"
                     },
                     {
+                        "id": 34,
                         "question_id": 13,
                         "question_category_id": 8,
-                        "question_category_name": "是否打标",
-                        "id": 34
+                        "question_category_name": "是否打标"
                     }
                 ],
                 "id": 13,
                 "created_time": 1682500882,
-                "tank_type": "裸缸"
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
+                "is_active": false
             }
         ]
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -725,8 +725,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 14,
         "created_time": 1682500967,
@@ -753,7 +751,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "高度"
             }
         ]
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
