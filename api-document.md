@@ -89,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
@@ -233,7 +233,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | mark | string | N | 订单备注 |
 | pic_3d_url | string | N | 产品3D展示图url |
 | hole_list | object_array | N | 打孔数据 |
-&emsp;hole_list.location | int | N | 打孔位置枚举: 0左侧面，1右侧面，2前面，3后面，4底面 |
+&emsp;hole_list.location | int | N | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 &emsp;hole_list.horizontal_location | int | N | 水平位置枚举: 0->左边测，1->右边测 |
 &emsp;hole_list.horizontal_distance | int | N | 水平位置距离(mm) |
 &emsp;hole_list.vertical_location | int | N | 竖直位置枚举: 0->上边测，1->下边测 |
@@ -256,6 +256,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "need_stiffener": true,
+    "bottom_thickness": 8,
+    "source": 1,
+    "order_time": 1683832500000,
+    "filter_type": 1,
+    "mark": "备注",
+    "discount": 70,
+    "need_hole": true,
+    "freight": 0,
+    "logo_location": 0,
+    "glass_glue_color": 0,
+    "around_thickness": 8,
+    "draft": false,
+    "stiffener_list": [
+        {
+            "stiffener_type": 0,
+            "vertical_location": 0,
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2
+        }
+    ],
     "hole_list": [
         {
             "diameter": 100,
@@ -266,34 +287,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": 0
         }
     ],
-    "need_stiffener": true,
-    "bottom_thickness": 8,
-    "around_thickness": 8,
-    "discount": 70,
-    "need_logo": true,
-    "height": 600,
-    "source": 1,
-    "mark": "备注",
-    "stiffener_list": [
-        {
-            "stiffener_type": 0,
-            "vertical_location": 0,
-            "vertical_glass_thickness": 8,
-            "vertical_count": 2
-        }
-    ],
-    "logo_location": 0,
     "length": 600,
     "customer_nickname": "用户昵称",
-    "filter_type": 1,
-    "order_time": 1683832500000,
-    "freight": 0,
-    "draft": false,
-    "need_hole": true,
-    "glass_glue_color": 0,
-    "glass_material_id": 1,
+    "need_logo": true,
     "width": 600,
-    "order_no": "202305041003"
+    "order_no": "202305041003",
+    "glass_material_id": 1,
+    "height": 600
 }
 ```
 > 响应示例:
@@ -408,7 +408,7 @@ null
 | mark | string | 订单备注 |
 | pic_3d_url | string | 产品3D展示图url |
 | hole_list | object_array | 打孔数据 |
-| &emsp;hole_list.location | int | 打孔位置枚举: 0左侧面，1右侧面，2前面，3后面，4底面 |
+| &emsp;hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 | &emsp;hole_list.horizontal_location | int | 水平位置枚举: 0->左边测，1->右边测 |
 | &emsp;hole_list.horizontal_distance | int | 水平位置距离(mm) |
 | &emsp;hole_list.vertical_location | int | 竖直位置枚举: 0->上边测，1->下边测 |
@@ -461,7 +461,7 @@ null
 | &emsp;item_info.glass_material_name | string | 玻璃材质名称 |
 | &emsp;item_info.glass_material_density | string | 玻璃材质密度 |
 | &emsp;item_info.hole_list | object_array | 打孔数据 |
-| &emsp;&emsp;item_info.hole_list.location | int | 打孔位置枚举: 0左侧面，1右侧面，2前面，3后面，4底面 |
+| &emsp;&emsp;item_info.hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 | &emsp;&emsp;item_info.hole_list.horizontal_location | int | 水平位置枚举: 0->左边测，1->右边测 |
 | &emsp;&emsp;item_info.hole_list.horizontal_distance | int | 水平位置距离(mm) |
 | &emsp;&emsp;item_info.hole_list.vertical_location | int | 竖直位置枚举: 0->上边测，1->下边测 |
