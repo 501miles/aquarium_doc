@@ -89,11 +89,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "msg": "",
     "data": {
         "status": 1
     },
-    "code": 0,
-    "msg": ""
+    "code": 0
 }
 ```
 
@@ -127,10 +127,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
     "captcha_code": "963852",
     "username": "nick",
-    "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
+    "password": "123456"
 }
 ```
 > 响应示例:
@@ -222,6 +222,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | height | int | N | 高度(mm) |
 | sides_thickness | int | N | 玻璃四面厚度(mm) |
 | bottom_thickness | int | N | 玻璃底面厚度(mm) |
+| bottom_glass_type | int | N | 玻璃底面厚度类型枚举: 0->单层玻璃，0->双层夹胶玻璃 |
 | glass_material_id | int | N | 玻璃材质id |
 | btn_comb_distance | int | N | 鱼梳板打孔距底面高度(mm) |
 | btn_comb_material_id | int | N | 鱼梳板材质id |
@@ -257,30 +258,34 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "height": 600,
-    "mark": "备注",
-    "freight": 0,
+    "draft": false,
+    "logo_location": 0,
+    "source": 1,
+    "need_hole": true,
+    "glass_glue_color": 0,
     "sides_thickness": 8,
-    "width": 600,
+    "length": 600,
     "order_time": 1683832500000,
+    "mark": "备注",
     "stretch_list": [
         {
-            "vertical_location": 0,
-            "vertical_glass_thickness": 8,
             "vertical_count": 2,
-            "stretch_type": 0
+            "stretch_type": 0,
+            "vertical_location": 0,
+            "vertical_glass_thickness": 8
         }
     ],
-    "need_stretch": true,
-    "glass_glue_color": 0,
-    "need_hole": true,
-    "length": 600,
-    "tank_type": 1,
-    "need_logo": true,
-    "glass_material_id": 1,
-    "bottom_thickness": 8,
+    "discount": 70,
+    "height": 600,
+    "width": 600,
     "customer_nickname": "用户昵称",
-    "source": 1,
+    "need_stretch": true,
+    "glass_material_id": 1,
+    "bottom_glass_type": 0,
+    "bottom_thickness": 8,
+    "order_no": "202305041003",
+    "tank_type": 1,
+    "freight": 0,
     "hole_list": [
         {
             "diameter": 100,
@@ -291,21 +296,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": 0
         }
     ],
-    "discount": 70,
-    "logo_location": 0,
-    "order_no": "202305041003",
-    "draft": false
+    "need_logo": true
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "id": 10000
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -352,6 +354,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.height | int | 高度(mm) |
 | &emsp;list.sides_thickness | int | 玻璃四面厚度(mm) |
 | &emsp;list.bottom_thickness | int | 玻璃底面厚度(mm) |
+| &emsp;list.bottom_glass_type | int | 玻璃底面厚度类型枚举: 0->单层玻璃，0->双层夹胶玻璃 |
 | &emsp;list.glass_material_id | int | 玻璃材质id |
 | &emsp;list.btn_comb_distance | int | 鱼梳板打孔距底面高度(mm) |
 | &emsp;list.btn_comb_material_id | int | 鱼梳板材质表id |
@@ -405,6 +408,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | height | int | 高度(mm) |
 | sides_thickness | int | 玻璃四面厚度(mm) |
 | bottom_thickness | int | 玻璃底面厚度(mm) |
+| bottom_glass_type | int | 玻璃底面厚度类型枚举: 0->单层玻璃，0->双层夹胶玻璃 |
 | glass_material_id | int | 玻璃材质id |
 | glass_material_name | string | 玻璃材质名称 |
 | glass_material_density | string | 玻璃材质密度 |
@@ -469,6 +473,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;item_info.pic_3d_url | string | 产品3D展示图url |
 | &emsp;item_info.sides_thickness | int | 玻璃四面厚度(mm) |
 | &emsp;item_info.bottom_thickness | int | 玻璃底面厚度(mm) |
+| &emsp;item_info.bottom_glass_type | int | 玻璃底面厚度类型枚举: 0->单层玻璃，0->双层夹胶玻璃 |
 | &emsp;item_info.glass_material_id | int | 玻璃材质id |
 | &emsp;item_info.glass_material_name | string | 玻璃材质名称 |
 | &emsp;item_info.glass_material_density | string | 玻璃材质密度 |
@@ -626,28 +631,28 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "count": 12,
         "list": [
             {
-                "id": 14,
                 "created_time": 1682500967,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
+                        "question_category_name": "长度",
                         "id": 35,
                         "question_id": 14,
-                        "question_category_id": 6,
-                        "question_category_name": "长度"
+                        "question_category_id": 6
                     },
                     {
-                        "question_category_id": 7,
                         "question_category_name": "宽度",
                         "id": 36,
-                        "question_id": 14
+                        "question_id": 14,
+                        "question_category_id": 7
                     },
                     {
                         "id": 37,
@@ -655,25 +660,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "高度"
                     }
-                ]
+                ],
+                "id": 14
             },
             {
+                "id": 13,
                 "created_time": 1682500882,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "id": 32,
                         "question_id": 13,
                         "question_category_id": 6,
-                        "question_category_name": "是否打标"
+                        "question_category_name": "是否打标",
+                        "id": 32
                     },
                     {
-                        "id": 33,
                         "question_id": 13,
                         "question_category_id": 7,
-                        "question_category_name": "是否打标"
+                        "question_category_name": "是否打标",
+                        "id": 33
                     },
                     {
                         "id": 34,
@@ -681,12 +688,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "是否打标"
                     }
-                ],
-                "id": 13
+                ]
             }
         ]
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -742,16 +747,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
+                "id": 36,
                 "question_id": 14,
                 "question_category_id": 7,
-                "question_category_name": "宽度",
-                "id": 36
+                "question_category_name": "宽度"
             },
             {
-                "question_category_name": "高度",
                 "id": 37,
                 "question_id": 14,
-                "question_category_id": 8
+                "question_category_id": 8,
+                "question_category_name": "高度"
             }
         ],
         "id": 14,
