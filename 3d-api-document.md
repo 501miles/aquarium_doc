@@ -1,8 +1,8 @@
 # 模型接口定义文档v1.0
 
-## 1.获取鱼缸3D数据
+## 1.获取鱼缸模型数据
 
-> URL: /tank3d
+> URL: /tank_model
 
 > Method: POST
 > 
