@@ -90,11 +90,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -130,10 +130,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
     "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick"
 }
 ```
 > 响应示例:
@@ -143,8 +143,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
-        "name": "nick"
+        "name": "nick",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
     }
 }
 ```
@@ -205,10 +205,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": [
         {
-            "id": 1,
             "name": "订单管理",
             "selectable": false,
             "sub_modules": [
@@ -224,9 +224,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "selectable": true,
                     "sub_modules": null
                 }
-            ]
+            ],
+            "id": 1
         },
         {
+            "selectable": false,
             "sub_modules": [
                 {
                     "id": 5,
@@ -236,24 +238,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 }
             ],
             "id": 4,
-            "name": "问题管理",
-            "selectable": false
+            "name": "问题管理"
         },
         {
-            "sub_modules": [
-                {
-                    "sub_modules": null,
-                    "id": 7,
-                    "name": "用户列表",
-                    "selectable": true
-                }
-            ],
             "id": 6,
             "name": "用户管理",
-            "selectable": false
+            "selectable": false,
+            "sub_modules": [
+                {
+                    "selectable": true,
+                    "sub_modules": null,
+                    "id": 7,
+                    "name": "用户列表"
+                }
+            ]
         }
-    ],
-    "code": 0
+    ]
 }
 ```
 
@@ -380,36 +380,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "bottom_thickness": 8,
-    "sides_thickness": 8,
-    "customer_nickname": "用户昵称",
-    "source": 1,
-    "order_time": 1683832500000,
-    "hole_list": [
-        {
-            "vertical_distance": 100,
-            "vertical_location": 0,
-            "horizontal_distance": 100,
-            "horizontal_location": 0,
-            "location": 0,
-            "diameter": 100
-        }
-    ],
-    "need_hole": true,
-    "need_logo": true,
-    "freight": 0,
-    "length": 600,
-    "mark": "备注",
-    "draft": false,
-    "logo_location": 0,
-    "height": 600,
-    "width": 600,
     "glass_material_id": 1,
-    "order_no": "202305041003",
-    "tank_type": 1,
-    "discount": 70,
-    "need_stretch": true,
-    "glass_glue_color": 0,
+    "bottom_thickness": 8,
+    "draft": false,
+    "customer_nickname": "用户昵称",
+    "order_time": 1683832500000,
+    "mark": "备注",
+    "freight": 0,
     "stretch_list": [
         {
             "vertical_glass_thickness": 8,
@@ -418,7 +395,30 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "vertical_location": 0
         }
     ],
-    "bottom_glass_type": 0
+    "bottom_glass_type": 0,
+    "height": 600,
+    "width": 600,
+    "length": 600,
+    "tank_type": 1,
+    "need_stretch": true,
+    "logo_location": 0,
+    "sides_thickness": 8,
+    "need_logo": true,
+    "glass_glue_color": 0,
+    "source": 1,
+    "order_no": "202305041003",
+    "hole_list": [
+        {
+            "horizontal_location": 0,
+            "location": 0,
+            "diameter": 100,
+            "vertical_distance": 100,
+            "vertical_location": 0,
+            "horizontal_distance": 100
+        }
+    ],
+    "discount": 70,
+    "need_hole": true
 }
 ```
 > 响应示例:
@@ -714,11 +714,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "id": 11
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -764,8 +764,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "page_size": 2,
-    "page": 1
+    "page": 1,
+    "page_size": 2
 }
 ```
 > 响应示例:
@@ -778,7 +778,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
-                "is_active": false,
                 "relate_category": [
                     {
                         "id": 35,
@@ -787,28 +786,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "长度"
                     },
                     {
-                        "id": 36,
-                        "question_id": 14,
                         "question_category_id": 7,
-                        "question_category_name": "宽度"
+                        "question_category_name": "宽度",
+                        "id": 36,
+                        "question_id": 14
                     },
                     {
-                        "id": 37,
-                        "question_id": 14,
                         "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_name": "高度",
+                        "id": 37,
+                        "question_id": 14
                     }
                 ],
                 "id": 14,
                 "created_time": 1682500967,
                 "tank_type": "裸缸",
-                "content": "问题描述内容"
+                "content": "问题描述内容",
+                "is_active": false
             },
             {
-                "created_time": 1682500882,
-                "tank_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false,
                 "relate_category": [
                     {
                         "id": 32,
@@ -829,7 +825,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     }
                 ],
-                "id": 13
+                "id": 13,
+                "created_time": 1682500882,
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
+                "is_active": false
             }
         ]
     }
@@ -894,10 +894,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
-                "id": 36,
                 "question_id": 14,
                 "question_category_id": 7,
-                "question_category_name": "宽度"
+                "question_category_name": "宽度",
+                "id": 36
             },
             {
                 "id": 37,
@@ -1169,7 +1169,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 24.图片预览
+## 24.获取订单pdf路径
+
+> URL: /getOrderPdf
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| order_id | int | Y | 订单id |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| pdf_path | string | pdf路径 |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 25.图片预览
 
 > URL: /preview
 
@@ -1195,6 +1224,35 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```text
 IMAGE_DATA
+```
+
+<br/><br/>
+## 26.文件获取
+
+> URL: /download
+
+> Method: GET
+
+> 需要Token: 否
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| path | string | Y | 路径 |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+```text
+?path=pdf/abc.pdf
+```
+> 响应示例:
+
+```text
+FILE_DATA
 ```
 
 <br/><br/>
