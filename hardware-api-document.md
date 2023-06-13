@@ -4,7 +4,7 @@
 
 > 1. POST请求参数都是application/json
 >
-> 1. 请求头里设置参数Authorization: lm2HcspkzWMYDjAy
+> 1. 请求头里设置参数Authorization: e9zbZzTMZ0bIKAn6
 
 ## 1.温度计数据上报
 

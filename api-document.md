@@ -130,22 +130,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
     "username": "nick",
-    "password": "123456"
+    "password": "123456",
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
     },
-    "code": 0,
-    "msg": ""
+    "code": 0
 }
 ```
 
@@ -209,36 +209,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "msg": "",
     "data": [
         {
+            "id": 1,
             "name": "订单管理",
             "selectable": false,
             "sub_modules": [
                 {
-                    "id": 2,
-                    "name": "订单列表",
-                    "selectable": true,
-                    "sub_modules": null
-                },
-                {
                     "selectable": true,
                     "sub_modules": null,
+                    "id": 2,
+                    "name": "订单列表"
+                },
+                {
+                    "sub_modules": null,
                     "id": 3,
-                    "name": "草稿列表"
+                    "name": "草稿列表",
+                    "selectable": true
                 }
-            ],
-            "id": 1
+            ]
         },
         {
-            "id": 4,
-            "name": "问题管理",
             "selectable": false,
             "sub_modules": [
                 {
+                    "id": 5,
                     "name": "问题列表",
                     "selectable": true,
-                    "sub_modules": null,
-                    "id": 5
+                    "sub_modules": null
                 }
-            ]
+            ],
+            "id": 4,
+            "name": "问题管理"
         },
         {
             "id": 6,
@@ -246,10 +246,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "selectable": false,
             "sub_modules": [
                 {
-                    "name": "用户列表",
-                    "selectable": true,
                     "sub_modules": null,
-                    "id": 7
+                    "id": 7,
+                    "name": "用户列表",
+                    "selectable": true
                 }
             ]
         }
@@ -477,8 +477,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "source": 1,
-    "order_no": "202305041003",
+    "sides_thickness": 8,
+    "mark": "备注",
     "stretch_list": [
         {
             "stretch_type": 0,
@@ -497,36 +497,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": 0
         }
     ],
-    "need_stretch": true,
+    "need_logo": true,
     "bottom_thickness": 8,
     "height": 600,
-    "width": 600,
-    "tank_type": 1,
-    "mark": "备注",
+    "order_no": "202305041003",
+    "freight": 0,
+    "draft": false,
     "logo_location": 0,
     "glass_glue_color": 0,
-    "order_time": 1683832500000,
-    "discount": 70,
-    "need_hole": true,
-    "need_logo": true,
-    "sides_thickness": 8,
-    "length": 600,
-    "customer_nickname": "用户昵称",
     "glass_material_id": 1,
     "bottom_glass_type": 0,
-    "freight": 0,
-    "draft": false
+    "tank_type": 1,
+    "discount": 70,
+    "need_hole": true,
+    "width": 600,
+    "length": 600,
+    "need_stretch": true,
+    "customer_nickname": "用户昵称",
+    "source": 1,
+    "order_time": 1683832500000
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "id": 10000
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -826,11 +826,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "msg": "",
     "data": {
         "id": 11
     },
-    "code": 0
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -890,6 +890,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
@@ -905,19 +907,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "宽度"
                     },
                     {
+                        "question_category_name": "高度",
                         "id": 37,
                         "question_id": 14,
-                        "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_id": 8
                     }
                 ],
                 "id": 14,
-                "created_time": 1682500967,
-                "tank_type": "裸缸",
-                "content": "问题描述内容"
+                "created_time": 1682500967
             },
             {
-                "created_time": 1682500882,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
@@ -929,10 +928,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     },
                     {
+                        "id": 33,
                         "question_id": 13,
                         "question_category_id": 7,
-                        "question_category_name": "是否打标",
-                        "id": 33
+                        "question_category_name": "是否打标"
                     },
                     {
                         "id": 34,
@@ -941,7 +940,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     }
                 ],
-                "id": 13
+                "id": 13,
+                "created_time": 1682500882
             }
         ]
     }
@@ -993,6 +993,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
+        "id": 14,
         "created_time": 1682500967,
         "tank_type": "裸缸",
         "content": "问题描述内容",
@@ -1005,10 +1006,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
-                "question_category_name": "宽度",
                 "id": 36,
                 "question_id": 14,
-                "question_category_id": 7
+                "question_category_id": 7,
+                "question_category_name": "宽度"
             },
             {
                 "id": 37,
@@ -1016,8 +1017,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_id": 8,
                 "question_category_name": "高度"
             }
-        ],
-        "id": 14
+        ]
     }
 }
 ```
