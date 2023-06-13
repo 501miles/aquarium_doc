@@ -2,9 +2,11 @@
 
 ## 说明：
 
-> 1. POST请求参数都是application/json
+>1. POST请求参数都是application/json
 >
-> 1. 请求头里设置参数Authorization: e9zbZzTMZ0bIKAn6
+>1. 请求头里设置参数Authorization: e9zbZzTMZ0bIKAn6
+>
+>1. 接口测试地址前缀http://evan0.xyz:9998/v1/api
 
 ## 1.温度计数据上报
 
