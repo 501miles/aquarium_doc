@@ -209,15 +209,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "msg": "",
     "data": [
         {
-            "id": 1,
-            "name": "订单管理",
             "selectable": false,
             "sub_modules": [
                 {
-                    "id": 2,
-                    "name": "订单列表",
                     "selectable": true,
-                    "sub_modules": null
+                    "sub_modules": null,
+                    "id": 2,
+                    "name": "订单列表"
                 },
                 {
                     "id": 3,
@@ -225,20 +223,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "selectable": true,
                     "sub_modules": null
                 }
-            ]
+            ],
+            "id": 1,
+            "name": "订单管理"
         },
         {
-            "id": 4,
             "name": "问题管理",
             "selectable": false,
             "sub_modules": [
                 {
-                    "name": "问题列表",
-                    "selectable": true,
                     "sub_modules": null,
-                    "id": 5
+                    "id": 5,
+                    "name": "问题列表",
+                    "selectable": true
                 }
-            ]
+            ],
+            "id": 4
         },
         {
             "name": "用户管理",
@@ -478,56 +478,56 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "need_stretch": true,
-    "glass_glue_color": 0,
-    "bottom_glass_type": 0,
     "sides_thickness": 8,
     "width": 600,
-    "draft": false,
-    "stretch_list": [
-        {
-            "stretch_type": 0,
-            "vertical_location": 0,
-            "vertical_glass_thickness": 8,
-            "vertical_count": 2
-        }
-    ],
+    "tank_type": 1,
+    "mark": "备注",
     "hole_list": [
         {
-            "horizontal_distance": 100,
-            "horizontal_location": 0,
-            "location": 0,
             "diameter": 100,
             "vertical_distance": 100,
+            "vertical_location": 0,
+            "horizontal_distance": 100,
+            "horizontal_location": 0,
+            "location": 0
+        }
+    ],
+    "bottom_thickness": 8,
+    "freight": 0,
+    "draft": false,
+    "need_logo": true,
+    "customer_nickname": "用户昵称",
+    "height": 600,
+    "order_time": 1683832500000,
+    "need_stretch": true,
+    "glass_material_id": 1,
+    "need_hole": true,
+    "logo_location": 0,
+    "glass_glue_color": 0,
+    "bottom_glass_type": 0,
+    "length": 600,
+    "source": 1,
+    "stretch_list": [
+        {
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2,
+            "stretch_type": 0,
             "vertical_location": 0
         }
     ],
     "discount": 70,
-    "logo_location": 0,
-    "glass_material_id": 1,
-    "order_no": "202305041003",
-    "tank_type": 1,
-    "need_hole": true,
-    "bottom_thickness": 8,
-    "height": 600,
-    "mark": "备注",
-    "freight": 0,
-    "need_logo": true,
-    "length": 600,
-    "customer_nickname": "用户昵称",
-    "source": 1,
-    "order_time": 1683832500000
+    "order_no": "202305041003"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "id": 10000
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -885,12 +885,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "count": 12,
         "list": [
             {
+                "content": "问题描述内容",
+                "is_active": false,
                 "relate_category": [
                     {
                         "question_category_id": 6,
@@ -899,10 +900,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_id": 14
                     },
                     {
+                        "id": 36,
                         "question_id": 14,
                         "question_category_id": 7,
-                        "question_category_name": "宽度",
-                        "id": 36
+                        "question_category_name": "宽度"
                     },
                     {
                         "id": 37,
@@ -913,28 +914,25 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 ],
                 "id": 14,
                 "created_time": 1682500967,
-                "tank_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false
+                "tank_type": "裸缸"
             },
             {
-                "id": 13,
                 "created_time": 1682500882,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_id": 6,
-                        "question_category_name": "是否打标",
                         "id": 32,
-                        "question_id": 13
+                        "question_id": 13,
+                        "question_category_id": 6,
+                        "question_category_name": "是否打标"
                     },
                     {
-                        "id": 33,
-                        "question_id": 13,
                         "question_category_id": 7,
-                        "question_category_name": "是否打标"
+                        "question_category_name": "是否打标",
+                        "id": 33,
+                        "question_id": 13
                     },
                     {
                         "id": 34,
@@ -942,10 +940,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "是否打标"
                     }
-                ]
+                ],
+                "id": 13
             }
         ]
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -994,10 +994,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "id": 14,
-        "created_time": 1682500967,
-        "tank_type": "裸缸",
-        "content": "问题描述内容",
         "is_active": false,
         "relate_category": [
             {
@@ -1013,12 +1009,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "宽度"
             },
             {
-                "id": 37,
-                "question_id": 14,
                 "question_category_id": 8,
-                "question_category_name": "高度"
+                "question_category_name": "高度",
+                "id": 37,
+                "question_id": 14
             }
-        ]
+        ],
+        "id": 14,
+        "created_time": 1682500967,
+        "tank_type": "裸缸",
+        "content": "问题描述内容"
     }
 }
 ```
@@ -1313,7 +1313,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 <br/><br/>
 ## 27.保存设备温度监测
 
-> URL: /save_device_monitor
+> URL: /saveDeviceMonitor
 
 > Method: POST
 
@@ -1324,12 +1324,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
 | id | int | N | id |
+| device_uuid | string | Y | 温度计序列号 |
 | monitor_type | int | Y | 监测类型枚举：0->鱼缸，1->其它 |
 | temp_tank_type | int | Y | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
 | tank_status | int | Y | 鱼缸状态枚举: 0->新开缸 1->维护中 2->已禁用 |
-| length | int | N | id |
-| width | int | Y | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
-| height | int | Y | 内容 |
+| length | int | N | 长度mm |
+| width | int | Y | 宽度mm |
+| height | int | Y | 高度mm |
 | tools_remark | string | N | 使用缸内工具备注 |
 
 
@@ -1349,7 +1350,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 <br/><br/>
 ## 28.设备温度监测查询
 
-> URL: /search_device_monitor
+> URL: /searchDeviceMonitor
 
 > Method: POST
 
@@ -1371,163 +1372,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | id | int | id |
-| monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
-| monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
-| temp_tank_type | int | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
-| tank_status | int | 鱼缸状态枚举: 0->新开缸 1->维护中 2->已禁用 |
-| length | int | id |
-| width | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
-| height | int | 内容 |
-| tools_remark | string | 使用缸内工具备注 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 29.设备温度监测详情
-
-> URL: /device_monitor_detail
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| id | int | Y | id |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| id | int | id |
-| monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
-| monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
-| temp_tank_type | int | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
-| tank_status | int | 鱼缸状态枚举: 0->新开缸 1->维护中 2->已禁用 |
-| length | int | id |
-| width | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
-| height | int | 内容 |
-| tools_remark | string | 使用缸内工具备注 |
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 30.删除设备温度监测
-
-> URL: /del_device_monitor
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| id | int | Y | id |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-
-> 响应示例:
-
-
-
-<br/><br/>
-## 31.图片预览
-
-> URL: /preview
-
-> Method: GET
-
-> 需要Token: 否
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| path | string | Y | 路径 |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-```text
-?path=3cT9XtF1nJtD/2501681355694.jpg
-```
-> 响应示例:
-
-```text
-IMAGE_DATA
-```
-
-<br/><br/>
-## 32.文件下载
-
-> URL: /download
-
-> Method: GET
-
-> 需要Token: 否
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| path | string | Y | 路径 |
-
-
-> 响应参数: 无
-
-> 请求示例:
-
-```text
-?path=pdf/abc.pdf
-```
-> 响应示例:
-
-```text
-FILE_DATA
-```
-
-<br/><br/>
-## 33.文件上传
-
-> URL: /upload
-
-> Method: POST
-
-> 需要Token: 是
-
-> 请求参数:
-
-| 参数名 | 类型 | 必传 | 说明 |
-| --- | --- | --- | --- |
-| file | form-data file | N | form-data格式的file类型 |
-
-
-> 响应参数: obj
-
-| 参数名 | 类型  | 说明 |
-| --- | --- | --- |
-| path | string | 保存的文件路径 |
 
 > 请求示例:
 
