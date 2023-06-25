@@ -131,10 +131,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
-    "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick",
+    "password": "123456"
 }
 ```
 > 响应示例:
@@ -210,49 +210,49 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "msg": "",
     "data": [
         {
-            "id": 1,
-            "name": "订单管理",
             "selectable": false,
             "sub_modules": [
                 {
-                    "name": "订单列表",
-                    "selectable": true,
                     "sub_modules": null,
-                    "id": 2
+                    "id": 2,
+                    "name": "订单列表",
+                    "selectable": true
                 },
                 {
-                    "name": "草稿列表",
                     "selectable": true,
                     "sub_modules": null,
-                    "id": 3
+                    "id": 3,
+                    "name": "草稿列表"
+                }
+            ],
+            "id": 1,
+            "name": "订单管理"
+        },
+        {
+            "id": 4,
+            "name": "问题管理",
+            "selectable": false,
+            "sub_modules": [
+                {
+                    "id": 5,
+                    "name": "问题列表",
+                    "selectable": true,
+                    "sub_modules": null
                 }
             ]
         },
         {
+            "id": 6,
+            "name": "用户管理",
             "selectable": false,
             "sub_modules": [
                 {
+                    "name": "用户列表",
                     "selectable": true,
                     "sub_modules": null,
-                    "id": 5,
-                    "name": "问题列表"
+                    "id": 7
                 }
-            ],
-            "id": 4,
-            "name": "问题管理"
-        },
-        {
-            "sub_modules": [
-                {
-                    "selectable": true,
-                    "sub_modules": null,
-                    "id": 7,
-                    "name": "用户列表"
-                }
-            ],
-            "id": 6,
-            "name": "用户管理",
-            "selectable": false
+            ]
         }
     ]
 }
@@ -479,28 +479,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "need_hole": true,
-    "width": 600,
-    "length": 600,
-    "freight": 0,
     "stretch_list": [
         {
-            "vertical_count": 2,
             "stretch_type": 0,
             "vertical_location": 0,
-            "vertical_glass_thickness": 8
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2
         }
     ],
-    "discount": 70,
-    "need_logo": true,
-    "glass_glue_color": 0,
-    "bottom_glass_type": 0,
+    "need_hole": true,
+    "need_stretch": true,
+    "glass_material_id": 1,
+    "bottom_thickness": 8,
+    "height": 600,
+    "length": 600,
     "order_no": "202305041003",
-    "tank_type": 1,
-    "mark": "备注",
-    "customer_nickname": "用户昵称",
-    "source": 1,
     "order_time": 1683832500000,
+    "mark": "备注",
     "hole_list": [
         {
             "diameter": 100,
@@ -511,24 +506,29 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "location": 0
         }
     ],
-    "need_stretch": true,
+    "width": 600,
+    "source": 1,
+    "draft": false,
+    "tank_type": 1,
+    "discount": 70,
     "logo_location": 0,
-    "glass_material_id": 1,
-    "bottom_thickness": 8,
+    "need_logo": true,
+    "glass_glue_color": 0,
+    "bottom_glass_type": 0,
     "sides_thickness": 8,
-    "height": 600,
-    "draft": false
+    "customer_nickname": "用户昵称",
+    "freight": 0
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "id": 10000
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -815,24 +815,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "content": "问题描述内容",
     "relate_category": [
         6,
         7,
         8
     ],
-    "tank_type": "裸缸",
-    "content": "问题描述内容"
+    "tank_type": "裸缸"
 }
 ```
 > 响应示例:
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
         "id": 11
-    },
-    "code": 0
+    }
 }
 ```
 
@@ -892,11 +892,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
-                "id": 14,
-                "created_time": 1682500967,
-                "tank_type": "裸缸",
-                "content": "问题描述内容",
-                "is_active": false,
                 "relate_category": [
                     {
                         "id": 35,
@@ -916,9 +911,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "高度"
                     }
-                ]
+                ],
+                "id": 14,
+                "created_time": 1682500967,
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
+                "is_active": false
             },
             {
+                "id": 13,
+                "created_time": 1682500882,
+                "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
@@ -929,21 +932,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     },
                     {
-                        "question_id": 13,
-                        "question_category_id": 7,
                         "question_category_name": "是否打标",
-                        "id": 33
+                        "id": 33,
+                        "question_id": 13,
+                        "question_category_id": 7
                     },
                     {
-                        "id": 34,
                         "question_id": 13,
                         "question_category_id": 8,
-                        "question_category_name": "是否打标"
+                        "question_category_name": "是否打标",
+                        "id": 34
                     }
-                ],
-                "id": 13,
-                "created_time": 1682500882,
-                "tank_type": "裸缸"
+                ]
             }
         ]
     }
@@ -992,8 +992,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "created_time": 1682500967,
         "tank_type": "裸缸",
@@ -1001,10 +999,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "is_active": false,
         "relate_category": [
             {
-                "question_category_id": 6,
-                "question_category_name": "长度",
                 "id": 35,
-                "question_id": 14
+                "question_id": 14,
+                "question_category_id": 6,
+                "question_category_name": "长度"
             },
             {
                 "id": 36,
@@ -1013,14 +1011,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "宽度"
             },
             {
-                "id": 37,
-                "question_id": 14,
                 "question_category_id": 8,
-                "question_category_name": "高度"
+                "question_category_name": "高度",
+                "id": 37,
+                "question_id": 14
             }
         ],
         "id": 14
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -1534,7 +1534,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 33.保存设备温维护记录
+## 33.保存设备护记录
 
 > URL: /saveDeviceMaintain
 
@@ -1568,7 +1568,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 34.设备温维查询
+## 34.设备维护查询
 
 > URL: /searchDeviceMaintain
 
@@ -1603,7 +1603,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 35.设备温维详情
+## 35.设备维护详情
 
 > URL: /deviceMaintainDetail
 
@@ -1637,7 +1637,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 36.删除设备温维记录
+## 36.删除设备维护记录
 
 > URL: /delDeviceMaintain
 
