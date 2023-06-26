@@ -131,10 +131,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852",
     "username": "nick",
-    "password": "123456"
+    "password": "123456",
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
@@ -206,32 +206,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": [
         {
             "selectable": false,
             "sub_modules": [
                 {
-                    "sub_modules": null,
                     "id": 2,
                     "name": "订单列表",
-                    "selectable": true
+                    "selectable": true,
+                    "sub_modules": null
                 },
                 {
+                    "name": "草稿列表",
                     "selectable": true,
                     "sub_modules": null,
-                    "id": 3,
-                    "name": "草稿列表"
+                    "id": 3
                 }
             ],
             "id": 1,
             "name": "订单管理"
         },
         {
-            "id": 4,
-            "name": "问题管理",
-            "selectable": false,
             "sub_modules": [
                 {
                     "id": 5,
@@ -239,22 +234,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "selectable": true,
                     "sub_modules": null
                 }
-            ]
+            ],
+            "id": 4,
+            "name": "问题管理",
+            "selectable": false
         },
         {
-            "id": 6,
-            "name": "用户管理",
-            "selectable": false,
             "sub_modules": [
                 {
-                    "name": "用户列表",
                     "selectable": true,
                     "sub_modules": null,
-                    "id": 7
+                    "id": 7,
+                    "name": "用户列表"
                 }
-            ]
+            ],
+            "id": 6,
+            "name": "用户管理",
+            "selectable": false
         }
-    ]
+    ],
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -479,56 +479,56 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "stretch_list": [
-        {
-            "stretch_type": 0,
-            "vertical_location": 0,
-            "vertical_glass_thickness": 8,
-            "vertical_count": 2
-        }
-    ],
-    "need_hole": true,
-    "need_stretch": true,
+    "discount": 70,
+    "need_logo": true,
     "glass_material_id": 1,
-    "bottom_thickness": 8,
-    "height": 600,
-    "length": 600,
     "order_no": "202305041003",
-    "order_time": 1683832500000,
+    "need_hole": true,
+    "logo_location": 0,
+    "freight": 0,
     "mark": "备注",
     "hole_list": [
         {
+            "location": 0,
             "diameter": 100,
             "vertical_distance": 100,
             "vertical_location": 0,
             "horizontal_distance": 100,
-            "horizontal_location": 0,
-            "location": 0
+            "horizontal_location": 0
         }
     ],
+    "need_stretch": true,
+    "height": 600,
     "width": 600,
+    "length": 600,
     "source": 1,
-    "draft": false,
     "tank_type": 1,
-    "discount": 70,
-    "logo_location": 0,
-    "need_logo": true,
+    "draft": false,
+    "stretch_list": [
+        {
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2,
+            "stretch_type": 0,
+            "vertical_location": 0
+        }
+    ],
     "glass_glue_color": 0,
     "bottom_glass_type": 0,
+    "bottom_thickness": 8,
     "sides_thickness": 8,
     "customer_nickname": "用户昵称",
-    "freight": 0
+    "order_time": 1683832500000
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 10000
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -815,13 +815,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "tank_type": "裸缸",
     "content": "问题描述内容",
     "relate_category": [
         6,
         7,
         8
-    ],
-    "tank_type": "裸缸"
+    ]
 }
 ```
 > 响应示例:
@@ -900,16 +900,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "长度"
                     },
                     {
-                        "id": 36,
                         "question_id": 14,
                         "question_category_id": 7,
-                        "question_category_name": "宽度"
+                        "question_category_name": "宽度",
+                        "id": 36
                     },
                     {
-                        "id": 37,
-                        "question_id": 14,
                         "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_name": "高度",
+                        "id": 37,
+                        "question_id": 14
                     }
                 ],
                 "id": 14,
@@ -932,16 +932,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     },
                     {
+                        "question_category_id": 7,
                         "question_category_name": "是否打标",
                         "id": 33,
-                        "question_id": 13,
-                        "question_category_id": 7
+                        "question_id": 13
                     },
                     {
+                        "id": 34,
                         "question_id": 13,
                         "question_category_id": 8,
-                        "question_category_name": "是否打标",
-                        "id": 34
+                        "question_category_name": "是否打标"
                     }
                 ]
             }
@@ -992,7 +992,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
+        "id": 14,
         "created_time": 1682500967,
         "tank_type": "裸缸",
         "content": "问题描述内容",
@@ -1005,22 +1008,19 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "长度"
             },
             {
-                "id": 36,
                 "question_id": 14,
                 "question_category_id": 7,
-                "question_category_name": "宽度"
+                "question_category_name": "宽度",
+                "id": 36
             },
             {
-                "question_category_id": 8,
-                "question_category_name": "高度",
                 "id": 37,
-                "question_id": 14
+                "question_id": 14,
+                "question_category_id": 8,
+                "question_category_name": "高度"
             }
-        ],
-        "id": 14
-    },
-    "code": 0,
-    "msg": ""
+        ]
+    }
 }
 ```
 
@@ -1547,6 +1547,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
 | id | int | N | id |
+| device_monitor_id | int | Y | 温度监测id |
 | time | int | N | 操作时间 |
 | operator_account_id | int | N | 操作员id |
 | maintain_type | int | N | 维护动作枚举: 0->喂食，1->换水，2->擦缸 |
@@ -1589,6 +1590,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | id | int | id |
+| device_monitor_id | int | 温度监测id |
 | time | int | 操作时间 |
 | operator_account_id | int | 操作员id |
 | maintain_type | int | 维护动作枚举: 0->喂食，1->换水，2->擦缸 |
@@ -1623,6 +1625,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | id | int | id |
+| device_monitor_id | int | 温度监测id |
 | time | int | 操作时间 |
 | operator_account_id | int | 操作员id |
 | maintain_type | int | 维护动作枚举: 0->喂食，1->换水，2->擦缸 |
