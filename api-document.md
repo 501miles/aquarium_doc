@@ -131,22 +131,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "captcha_code": "963852",
     "username": "nick",
     "password": "123456",
-    "captcha_id": "HG9bbV9JkEBqoBT8oquY"
+    "captcha_id": "HG9bbV9JkEBqoBT8oquY",
+    "captcha_code": "963852"
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -206,8 +206,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": [
         {
             "id": 1,
@@ -215,10 +213,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "selectable": false,
             "sub_modules": [
                 {
-                    "sub_modules": null,
-                    "id": 2,
                     "name": "订单列表",
-                    "selectable": true
+                    "selectable": true,
+                    "sub_modules": null,
+                    "id": 2
                 },
                 {
                     "id": 3,
@@ -242,7 +240,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             ]
         },
         {
-            "id": 6,
             "name": "用户管理",
             "selectable": false,
             "sub_modules": [
@@ -252,9 +249,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "selectable": true,
                     "sub_modules": null
                 }
-            ]
+            ],
+            "id": 6
         }
-    ]
+    ],
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -413,7 +413,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | id | int | N | 订单id |
 | order_time | int | N | 购买日期unix时间戳 |
 | order_no | string | N | 订单编号 |
-| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | draft | bool | N | 是否为草稿 |
 | source | int | N | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | customer_nickname | string | N | 用户昵称 |
@@ -479,20 +479,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "sides_thickness": 8,
+    "bottom_thickness": 8,
     "width": 600,
-    "customer_nickname": "用户昵称",
-    "source": 1,
     "order_time": 1683832500000,
-    "mark": "备注",
-    "glass_material_id": 1,
-    "bottom_glass_type": 0,
-    "logo_location": 0,
-    "freight": 0,
-    "draft": false,
-    "discount": 70,
-    "need_stretch": true,
-    "height": 600,
+    "order_no": "202305041003",
     "tank_type": 1,
     "stretch_list": [
         {
@@ -502,22 +492,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "vertical_count": 2
         }
     ],
-    "glass_glue_color": 0,
+    "need_stretch": true,
+    "logo_location": 0,
     "need_logo": true,
-    "bottom_thickness": 8,
+    "height": 600,
+    "source": 1,
+    "customer_nickname": "用户昵称",
+    "mark": "备注",
+    "discount": 70,
+    "glass_glue_color": 0,
+    "glass_material_id": 1,
+    "bottom_glass_type": 0,
+    "sides_thickness": 8,
     "length": 600,
-    "order_no": "202305041003",
+    "freight": 0,
     "hole_list": [
         {
-            "horizontal_location": 0,
-            "location": 0,
             "diameter": 100,
             "vertical_distance": 100,
             "vertical_location": 0,
-            "horizontal_distance": 100
+            "horizontal_distance": 100,
+            "horizontal_location": 0,
+            "location": 0
         }
     ],
-    "need_hole": true
+    "need_hole": true,
+    "draft": false
 }
 ```
 > 响应示例:
@@ -550,7 +550,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | customer_nickname | string | N | 用户昵称 |
 | customer_tel | string | N | 用户手机号 |
 | created_time | int | N | 创建时间 |
-| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | order_no | string | N | 订单编号 |
 | page | int | N | 页码，默认1 |
 | page_size | int | N | 每页条数，默认20 |
@@ -566,7 +566,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.created_time | int | 创建时间unix时间戳 |
 | &emsp;list.order_time | int | 购买日期unix时间戳 |
 | &emsp;list.order_no | string | 订单编号 |
-| &emsp;list.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| &emsp;list.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | &emsp;list.draft | bool | 是否为草稿 |
 | &emsp;list.source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | &emsp;list.customer_nickname | string | 用户昵称 |
@@ -628,7 +628,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | created_time | int | 创建时间unix时间戳 |
 | order_time | int | 购买日期unix时间戳 |
 | order_no | string | 订单编号 |
-| tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | draft | bool | 是否为草稿 |
 | source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
 | customer_nickname | string | 用户昵称 |
@@ -718,7 +718,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | item_info | obj |  |
-| &emsp;item_info.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| &emsp;item_info.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | &emsp;item_info.length | int | 长度(mm) |
 | &emsp;item_info.width | int | 宽度(mm) |
 | &emsp;item_info.height | int | 高度(mm) |
@@ -799,7 +799,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
 | id | int | N | id |
-| tank_type | int | Y | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | Y | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | content | string | Y | 内容 |
 | is_active | bool | N | 启用状态 |
 | relate_category | int_array | Y | 绑定的模块 |
@@ -815,13 +815,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "tank_type": "裸缸",
     "content": "问题描述内容",
     "relate_category": [
         6,
         7,
         8
-    ]
+    ],
+    "tank_type": "裸缸"
 }
 ```
 > 响应示例:
@@ -850,7 +850,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
 | key_word | string | N | 关键字 |
-| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | N | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | is_active | bool | N | 启用状态 |
 | page | int | N | 页码，默认1 |
 | page_size | int | N | 每页条数，默认20 |
@@ -864,7 +864,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | list | obj_array | 数据列表 |
 | &emsp;list.id | int | 问题id |
 | &emsp;list.created_time | int | 创建时间 |
-| &emsp;list.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| &emsp;list.tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | &emsp;list.content | string | 内容 |
 | &emsp;list.is_active | bool | 启用状态 |
 | &emsp;list.created_time | int | 创建时间 |
@@ -892,8 +892,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
-                "tank_type": "裸缸",
-                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
@@ -916,20 +914,20 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     }
                 ],
                 "id": 14,
-                "created_time": 1682500967
+                "created_time": 1682500967,
+                "tank_type": "裸缸",
+                "content": "问题描述内容"
             },
             {
-                "id": 13,
-                "created_time": 1682500882,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_id": 6,
                         "question_category_name": "是否打标",
                         "id": 32,
-                        "question_id": 13
+                        "question_id": 13,
+                        "question_category_id": 6
                     },
                     {
                         "id": 33,
@@ -943,7 +941,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "是否打标"
                     }
-                ]
+                ],
+                "id": 13,
+                "created_time": 1682500882
             }
         ]
     }
@@ -971,7 +971,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | 参数名 | 类型  | 说明 |
 | --- | --- | --- |
 | id | int | id |
-| tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸 |
+| tank_type | int | 缸类型枚举: 0->裸缸，2->侧滤缸，3->底滤缸，4->水陆缸，5->背包溢流缸 |
 | content | string | 内容 |
 | is_active | bool | 启用状态 |
 | created_time | int | 创建时间 |
@@ -992,9 +992,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": {
-        "id": 14,
         "created_time": 1682500967,
         "tank_type": "裸缸",
         "content": "问题描述内容",
@@ -1013,14 +1013,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "宽度"
             },
             {
+                "id": 37,
                 "question_id": 14,
                 "question_category_id": 8,
-                "question_category_name": "高度",
-                "id": 37
+                "question_category_name": "高度"
             }
-        ]
-    },
-    "code": 0
+        ],
+        "id": 14
+    }
 }
 ```
 
@@ -1671,7 +1671,208 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 
 <br/><br/>
-## 37.图片预览
+## 37.保存鱼缸架订单
+
+> URL: /saveRackOrder
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| id | int | N | id |
+| order_time | int | N | 购买时间 |
+| order_no | string | N | 订单编号 |
+| draft | bool | N | 是否为草稿 |
+| source | int | N | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
+| customer_nickname | string | N | 用户昵称 |
+| customer_tel | string | N | 用户手机号 |
+| length | int | N | 长度(mm) |
+| width | int | N | 宽度(mm) |
+| height | int | N | 高度(mm) |
+| rack_material | string | N | 钢架材质 |
+| skeleton_type | string | N | 骨架类型 |
+| beam_count | int | N | 横梁数量 |
+| carling_count | int | N | 纵梁数量 |
+| surface_color | int | N | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
+| need_pvc_bottom_board | bool | N | 是否需要pvc底板 |
+| pvc_usage | int | N | pvc用途枚举：0->鱼缸垫板，1->抵缸垫板 |
+| pvc_density | int | N | pvc密度枚举：0->中密度，1->高密度 |
+| pvc_board_length | int | N | pvc长度mm |
+| pvc_board_width | int | N | pvc宽度mm |
+| pvc_board_thickness | int | N | pvc厚度mm |
+| delivery_province | string | N | 收货地址省 |
+| delivery_city | string | N | 收货地址市 |
+| delivery_district | string | N | 收货地址区 |
+| delivery_address | string | N | 收货详细地址 |
+| factory_price | int | N | 厂家价格(分) 100=1元 |
+| sale_price | int | N | 销售价格(分) 100=1元 |
+| freight | int | N | 运费(分) 100=1元 |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | 订单id |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 38.删除鱼缸架订单
+
+> URL: /delRackOrder
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| id | int | Y | 订单id |
+
+
+> 响应参数: 无
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 39.鱼缸架订单列表
+
+> URL: /queryRackOrderList
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| draft | bool | N | 是否为草稿 |
+| page | int | N | 页码，默认1 |
+| page_size | int | N | 每页条数，默认20 |
+
+
+> 响应参数: obj_list
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| created_time | int | 创建时间 |
+| order_time | int | 购买时间 |
+| order_no | string | 订单编号 |
+| draft | bool | 是否为草稿 |
+| source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
+| customer_nickname | string | 用户昵称 |
+| customer_tel | string | 用户手机号 |
+| length | int | 长度(mm) |
+| width | int | 宽度(mm) |
+| height | int | 高度(mm) |
+| rack_material | string | 钢架材质 |
+| skeleton_type | string | 骨架类型 |
+| beam_count | int | 横梁数量 |
+| carling_count | int | 纵梁数量 |
+| surface_color | int | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
+| need_pvc_bottom_board | bool | 是否需要pvc底板 |
+| pvc_usage | int | pvc用途枚举：0->鱼缸垫板，1->抵缸垫板 |
+| pvc_density | int | pvc密度枚举：0->中密度，1->高密度 |
+| pvc_board_length | int | pvc长度mm |
+| pvc_board_width | int | pvc宽度mm |
+| pvc_board_thickness | int | pvc厚度mm |
+| delivery_province | string | 收货地址省 |
+| delivery_city | string | 收货地址市 |
+| delivery_district | string | 收货地址区 |
+| delivery_address | string | 收货详细地址 |
+| factory_price | int | 厂家价格(分) 100=1元 |
+| sale_price | int | 销售价格(分) 100=1元 |
+| freight | int | 运费(分) 100=1元 |
+| final_price | int | 最终价格(分) |
+| profit_rate | int | 利润率(%) ((售价-成本)/销售价)*100% |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 40.鱼缸架订单详情
+
+> URL: /detailRackOrder
+
+> Method: POST
+
+> 需要Token: 是
+
+> 请求参数:
+
+| 参数名 | 类型 | 必传 | 说明 |
+| --- | --- | --- | --- |
+| id | int | Y | 订单id |
+
+
+> 响应参数: obj
+
+| 参数名 | 类型  | 说明 |
+| --- | --- | --- |
+| id | int | id |
+| created_time | int | 创建时间 |
+| order_time | int | 购买时间 |
+| order_no | string | 订单编号 |
+| draft | bool | 是否为草稿 |
+| source | int | 来源平台枚举：0->抖音，1->快手，2->淘宝，3->微信 |
+| customer_nickname | string | 用户昵称 |
+| customer_tel | string | 用户手机号 |
+| length | int | 长度(mm) |
+| width | int | 宽度(mm) |
+| height | int | 高度(mm) |
+| rack_material | string | 钢架材质 |
+| skeleton_type | string | 骨架类型 |
+| beam_count | int | 横梁数量 |
+| carling_count | int | 纵梁数量 |
+| surface_color | int | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
+| need_pvc_bottom_board | bool | 是否需要pvc底板 |
+| pvc_usage | int | pvc用途枚举：0->鱼缸垫板，1->抵缸垫板 |
+| pvc_density | int | pvc密度枚举：0->中密度，1->高密度 |
+| pvc_board_length | int | pvc长度mm |
+| pvc_board_width | int | pvc宽度mm |
+| pvc_board_thickness | int | pvc厚度mm |
+| delivery_province | string | 收货地址省 |
+| delivery_city | string | 收货地址市 |
+| delivery_district | string | 收货地址区 |
+| delivery_address | string | 收货详细地址 |
+| factory_price | int | 厂家价格(分) 100=1元 |
+| sale_price | int | 销售价格(分) 100=1元 |
+| freight | int | 运费(分) 100=1元 |
+| final_price | int | 最终价格(分) |
+| profit_rate | int | 利润率(%) ((售价-成本)/销售价)*100% |
+
+> 请求示例:
+
+
+> 响应示例:
+
+
+
+<br/><br/>
+## 41.图片预览
 
 > URL: /preview
 
@@ -1700,7 +1901,7 @@ IMAGE_DATA
 ```
 
 <br/><br/>
-## 38.文件下载
+## 42.文件下载
 
 > URL: /download
 
@@ -1729,7 +1930,7 @@ FILE_DATA
 ```
 
 <br/><br/>
-## 39.文件上传
+## 43.文件上传
 
 > URL: /upload
 
