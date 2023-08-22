@@ -141,12 +141,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "name": "nick",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -206,6 +206,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": [
         {
             "id": 1,
@@ -213,10 +215,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "selectable": false,
             "sub_modules": [
                 {
+                    "id": 2,
                     "name": "订单列表",
                     "selectable": true,
-                    "sub_modules": null,
-                    "id": 2
+                    "sub_modules": null
                 },
                 {
                     "id": 3,
@@ -240,8 +242,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             ]
         },
         {
-            "name": "用户管理",
-            "selectable": false,
             "sub_modules": [
                 {
                     "id": 7,
@@ -250,11 +250,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "sub_modules": null
                 }
             ],
-            "id": 6
+            "id": 6,
+            "name": "用户管理",
+            "selectable": false
         }
-    ],
-    "code": 0,
-    "msg": ""
+    ]
 }
 ```
 
@@ -455,6 +455,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | bottom_blank | int | N | 底部留高mm |
 | need_lid | bool | N | 需要缸盖 |
 | dry_wet_sep_box_layer_count | int | N | 干湿分离盒层数 |
+| front_height | int | N | 正面高度mm |
+| back_height | int | N | 背面高度mm |
+| backpack_price | int | N | 背包价格(分) |
+| backpack_location | int | N | 背包位置枚举：0->左侧面，1->右侧面，2->背面-左边，3->背面-中间，4->背面-右边 |
+| backpack_to_bottom_height | int | N | 背包距离底部高度mm |
 | hole_list | object_array | N | 打孔数据 |
 &emsp;hole_list.location | int | N | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 &emsp;hole_list.horizontal_location | int | N | 水平位置枚举: 0->左侧边，1->右侧边 |
@@ -479,11 +484,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "bottom_thickness": 8,
+    "sides_thickness": 8,
     "width": 600,
+    "length": 600,
     "order_time": 1683832500000,
-    "order_no": "202305041003",
-    "tank_type": 1,
+    "discount": 70,
+    "need_logo": true,
+    "bottom_thickness": 8,
+    "source": 1,
+    "mark": "备注",
+    "freight": 0,
     "stretch_list": [
         {
             "stretch_type": 0,
@@ -493,19 +503,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         }
     ],
     "need_stretch": true,
-    "logo_location": 0,
-    "need_logo": true,
-    "height": 600,
-    "source": 1,
-    "customer_nickname": "用户昵称",
-    "mark": "备注",
-    "discount": 70,
-    "glass_glue_color": 0,
     "glass_material_id": 1,
-    "bottom_glass_type": 0,
-    "sides_thickness": 8,
-    "length": 600,
-    "freight": 0,
+    "customer_nickname": "用户昵称",
+    "order_no": "202305041003",
+    "tank_type": 1,
     "hole_list": [
         {
             "diameter": 100,
@@ -517,18 +518,22 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         }
     ],
     "need_hole": true,
-    "draft": false
+    "bottom_glass_type": 0,
+    "height": 600,
+    "draft": false,
+    "logo_location": 0,
+    "glass_glue_color": 0
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 10000
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -595,6 +600,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.delivery_district | string | 收货地址区 |
 | &emsp;list.express_company | int | 快递公司枚举：0->顺丰，1->德邦，2->京东 |
 | &emsp;list.final_price | int | 最终价格(分) 折扣价+木架+运费 |
+| &emsp;list.front_height | int | 正面高度mm |
+| &emsp;list.back_height | int | 背面高度mm |
+| &emsp;list.backpack_price | int | 背包价格(分) |
+| &emsp;list.backpack_location | int | 背包位置枚举：0->左侧面，1->右侧面，2->背面-左边，3->背面-中间，4->背面-右边 |
+| &emsp;list.backpack_to_bottom_height | int | 背包距离底部高度mm |
 
 > 请求示例:
 
@@ -677,6 +687,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | bottom_blank | int | 底部留高mm |
 | need_lid | bool | 需要缸盖 |
 | dry_wet_sep_box_layer_count | int | 干湿分离盒层数 |
+| front_height | int | 正面高度mm |
+| back_height | int | 背面高度mm |
+| backpack_price | int | 背包价格(分) |
+| backpack_location | int | 背包位置枚举：0->左侧面，1->右侧面，2->背面-左边，3->背面-中间，4->背面-右边 |
+| backpack_to_bottom_height | int | 背包距离底部高度mm |
 | hole_list | object_array | 打孔数据 |
 | &emsp;hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 | &emsp;hole_list.horizontal_location | int | 水平位置枚举: 0->左侧边，1->右侧边 |
@@ -735,6 +750,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;item_info.btn_comb_material_name | int | 鱼梳板材质表名称 |
 | &emsp;item_info.btn_comb_material_density | int | 鱼梳板材质表密度 |
 | &emsp;item_info.tank_total_weight | int | 鱼缸总质量（克） |
+| &emsp;item_info.front_height | int | 正面高度mm |
+| &emsp;item_info.back_height | int | 背面高度mm |
+| &emsp;item_info.backpack_price | int | 背包价格(分) |
+| &emsp;item_info.backpack_location | int | 背包位置枚举：0->左侧面，1->右侧面，2->背面-左边，3->背面-中间，4->背面-右边 |
+| &emsp;item_info.backpack_to_bottom_height | int | 背包距离底部高度mm |
 | &emsp;item_info.hole_list | object_array | 打孔数据 |
 | &emsp;&emsp;item_info.hole_list.location | int | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 | &emsp;&emsp;item_info.hole_list.horizontal_location | int | 水平位置枚举: 0->左侧边，1->右侧边 |
@@ -815,24 +835,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "tank_type": "裸缸",
     "content": "问题描述内容",
     "relate_category": [
         6,
         7,
         8
-    ],
-    "tank_type": "裸缸"
+    ]
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "id": 11
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -889,9 +909,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "count": 12,
         "list": [
             {
+                "id": 14,
+                "created_time": 1682500967,
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
@@ -912,28 +935,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_id": 8,
                         "question_category_name": "高度"
                     }
-                ],
-                "id": 14,
-                "created_time": 1682500967,
-                "tank_type": "裸缸",
-                "content": "问题描述内容"
+                ]
             },
             {
-                "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
+                        "question_category_id": 6,
                         "question_category_name": "是否打标",
                         "id": 32,
-                        "question_id": 13,
-                        "question_category_id": 6
+                        "question_id": 13
                     },
                     {
+                        "question_category_name": "是否打标",
                         "id": 33,
                         "question_id": 13,
-                        "question_category_id": 7,
-                        "question_category_name": "是否打标"
+                        "question_category_id": 7
                     },
                     {
                         "id": 34,
@@ -943,9 +961,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     }
                 ],
                 "id": 13,
-                "created_time": 1682500882
+                "created_time": 1682500882,
+                "tank_type": "裸缸"
             }
-        ]
+        ],
+        "count": 12
     }
 }
 ```
@@ -992,19 +1012,18 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
+        "id": 14,
         "created_time": 1682500967,
         "tank_type": "裸缸",
         "content": "问题描述内容",
         "is_active": false,
         "relate_category": [
             {
-                "id": 35,
                 "question_id": 14,
                 "question_category_id": 6,
-                "question_category_name": "长度"
+                "question_category_name": "长度",
+                "id": 35
             },
             {
                 "id": 36,
@@ -1018,9 +1037,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_id": 8,
                 "question_category_name": "高度"
             }
-        ],
-        "id": 14
-    }
+        ]
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
