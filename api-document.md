@@ -91,11 +91,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "status": 1
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -131,10 +131,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
-    "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick",
+    "password": "123456"
 }
 ```
 > 响应示例:
@@ -210,6 +210,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "msg": "",
     "data": [
         {
+            "name": "订单管理",
+            "selectable": false,
             "sub_modules": [
                 {
                     "id": 2,
@@ -224,35 +226,33 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "name": "草稿列表"
                 }
             ],
-            "id": 1,
-            "name": "订单管理",
-            "selectable": false
+            "id": 1
         },
         {
-            "selectable": false,
-            "sub_modules": [
-                {
-                    "id": 5,
-                    "name": "问题列表",
-                    "selectable": true,
-                    "sub_modules": null
-                }
-            ],
             "id": 4,
-            "name": "问题管理"
-        },
-        {
-            "id": 6,
-            "name": "用户管理",
+            "name": "问题管理",
             "selectable": false,
             "sub_modules": [
                 {
                     "sub_modules": null,
-                    "id": 7,
-                    "name": "用户列表",
+                    "id": 5,
+                    "name": "问题列表",
                     "selectable": true
                 }
             ]
+        },
+        {
+            "name": "用户管理",
+            "selectable": false,
+            "sub_modules": [
+                {
+                    "id": 7,
+                    "name": "用户列表",
+                    "selectable": true,
+                    "sub_modules": null
+                }
+            ],
+            "id": 6
         }
     ]
 }
@@ -484,26 +484,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "freight": 0,
-    "draft": false,
-    "logo_location": 0,
     "glass_glue_color": 0,
     "bottom_glass_type": 0,
-    "bottom_thickness": 8,
-    "width": 600,
-    "mark": "备注",
-    "glass_material_id": 1,
-    "order_no": "202305041003",
-    "length": 600,
     "source": 1,
-    "stretch_list": [
-        {
-            "stretch_type": 0,
-            "vertical_location": 0,
-            "vertical_glass_thickness": 8,
-            "vertical_count": 2
-        }
-    ],
+    "mark": "备注",
     "hole_list": [
         {
             "vertical_distance": 100,
@@ -514,15 +498,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "diameter": 100
         }
     ],
-    "need_hole": true,
     "need_stretch": true,
+    "logo_location": 0,
+    "bottom_thickness": 8,
     "sides_thickness": 8,
-    "height": 600,
+    "width": 600,
+    "order_no": "202305041003",
+    "tank_type": 1,
     "discount": 70,
-    "need_logo": true,
-    "customer_nickname": "用户昵称",
+    "need_hole": true,
+    "length": 600,
     "order_time": 1683832500000,
-    "tank_type": 1
+    "draft": false,
+    "stretch_list": [
+        {
+            "stretch_type": 0,
+            "vertical_location": 0,
+            "vertical_glass_thickness": 8,
+            "vertical_count": 2
+        }
+    ],
+    "glass_material_id": 1,
+    "height": 600,
+    "customer_nickname": "用户昵称",
+    "freight": 0,
+    "need_logo": true
 }
 ```
 > 响应示例:
@@ -912,33 +912,34 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
-                "id": 14,
-                "created_time": 1682500967,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_name": "长度",
-                        "id": 35,
                         "question_id": 14,
-                        "question_category_id": 6
+                        "question_category_id": 6,
+                        "question_category_name": "长度",
+                        "id": 35
                     },
                     {
+                        "question_id": 14,
                         "question_category_id": 7,
                         "question_category_name": "宽度",
-                        "id": 36,
-                        "question_id": 14
+                        "id": 36
                     },
                     {
+                        "question_category_name": "高度",
                         "id": 37,
                         "question_id": 14,
-                        "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_id": 8
                     }
-                ]
+                ],
+                "id": 14,
+                "created_time": 1682500967
             },
             {
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
@@ -962,8 +963,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 ],
                 "id": 13,
                 "created_time": 1682500882,
-                "tank_type": "裸缸",
-                "content": "问题描述内容"
+                "tank_type": "裸缸"
             }
         ]
     }
@@ -1014,8 +1014,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 {
     "msg": "",
     "data": {
-        "created_time": 1682500967,
-        "tank_type": "裸缸",
         "content": "问题描述内容",
         "is_active": false,
         "relate_category": [
@@ -1032,13 +1030,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "宽度"
             },
             {
-                "question_category_name": "高度",
                 "id": 37,
                 "question_id": 14,
-                "question_category_id": 8
+                "question_category_id": 8,
+                "question_category_name": "高度"
             }
         ],
-        "id": 14
+        "id": 14,
+        "created_time": 1682500967,
+        "tank_type": "裸缸"
     },
     "code": 0
 }
@@ -1713,8 +1713,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | length | int | N | 长度(mm) |
 | width | int | N | 宽度(mm) |
 | height | int | N | 高度(mm) |
-| rack_material_id | string | N | 钢架材质 |
-| skeleton_type_id | string | N | 骨架类型 |
+| rack_material_id | int | N | 钢架材质 |
+| skeleton_type_id | int | N | 骨架类型 |
 | beam_count | int | N | 横梁数量 |
 | carling_count | int | N | 纵梁数量 |
 | surface_color | int | N | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
@@ -1785,6 +1785,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 | 参数名 | 类型 | 必传 | 说明 |
 | --- | --- | --- | --- |
+| id | int | N | id |
 | draft | bool | N | 是否为草稿 |
 | page | int | N | 页码，默认1 |
 | page_size | int | N | 每页条数，默认20 |
@@ -1805,8 +1806,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | length | int | 长度(mm) |
 | width | int | 宽度(mm) |
 | height | int | 高度(mm) |
-| rack_material_id | string | 钢架材质 |
-| skeleton_type_id | string | 骨架类型 |
+| rack_material_id | int | 钢架材质 |
+| skeleton_type_id | int | 骨架类型 |
 | beam_count | int | 横梁数量 |
 | carling_count | int | 纵梁数量 |
 | surface_color | int | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
@@ -1865,8 +1866,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | length | int | 长度(mm) |
 | width | int | 宽度(mm) |
 | height | int | 高度(mm) |
-| rack_material_id | string | 钢架材质 |
-| skeleton_type_id | string | 骨架类型 |
+| rack_material_id | int | 钢架材质 |
+| skeleton_type_id | int | 骨架类型 |
 | beam_count | int | 横梁数量 |
 | carling_count | int | 纵梁数量 |
 | surface_color | int | 表面颜色枚举：0->砂纹黑，1->砂纹白 |
