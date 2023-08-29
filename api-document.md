@@ -131,10 +131,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "username": "nick",
-    "password": "123456",
     "captcha_id": "HG9bbV9JkEBqoBT8oquY",
-    "captcha_code": "963852"
+    "captcha_code": "963852",
+    "username": "nick",
+    "password": "123456"
 }
 ```
 > 响应示例:
@@ -206,6 +206,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
     "msg": "",
     "data": [
         {
@@ -214,16 +215,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "selectable": false,
             "sub_modules": [
                 {
-                    "id": 2,
                     "name": "订单列表",
                     "selectable": true,
-                    "sub_modules": null
+                    "sub_modules": null,
+                    "id": 2
                 },
                 {
-                    "name": "草稿列表",
-                    "selectable": true,
                     "sub_modules": null,
-                    "id": 3
+                    "id": 3,
+                    "name": "草稿列表",
+                    "selectable": true
                 }
             ]
         },
@@ -233,10 +234,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "selectable": false,
             "sub_modules": [
                 {
-                    "name": "问题列表",
-                    "selectable": true,
                     "sub_modules": null,
-                    "id": 5
+                    "id": 5,
+                    "name": "问题列表",
+                    "selectable": true
                 }
             ]
         },
@@ -253,8 +254,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 }
             ]
         }
-    ],
-    "code": 0
+    ]
 }
 ```
 
@@ -460,6 +460,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | backpack_price | int | N | 背包价格(分) |
 | backpack_location | int | N | 背包位置枚举：0->左侧面，1->右侧面，2->背面-左边，3->背面-中间，4->背面-右边 |
 | backpack_to_bottom_height | int | N | 背包距离底部高度mm |
+| other_price | int | N | 其他价格(分) |
 | hole_list | object_array | N | 打孔数据 |
 &emsp;hole_list.location | int | N | 打孔位置枚举: 0->左侧面，1->右侧面，2->前面，3->后面，4->底面 |
 &emsp;hole_list.horizontal_location | int | N | 水平位置枚举: 0->左侧边，1->右侧边 |
@@ -492,36 +493,36 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "vertical_count": 2
         }
     ],
-    "need_hole": true,
-    "length": 600,
-    "order_no": "202305041003",
-    "order_time": 1683832500000,
-    "bottom_thickness": 8,
-    "tank_type": 1,
-    "discount": 70,
-    "need_stretch": true,
     "logo_location": 0,
-    "glass_material_id": 1,
-    "bottom_glass_type": 0,
-    "height": 600,
+    "need_logo": true,
     "width": 600,
-    "customer_nickname": "用户昵称",
+    "length": 600,
+    "order_time": 1683832500000,
     "mark": "备注",
-    "freight": 0,
-    "draft": false,
     "hole_list": [
         {
-            "vertical_distance": 100,
-            "vertical_location": 0,
-            "horizontal_distance": 100,
             "horizontal_location": 0,
             "location": 0,
-            "diameter": 100
+            "diameter": 100,
+            "vertical_distance": 100,
+            "vertical_location": 0,
+            "horizontal_distance": 100
         }
     ],
-    "need_logo": true,
-    "glass_glue_color": 0,
+    "order_no": "202305041003",
+    "tank_type": 1,
+    "freight": 0,
+    "discount": 70,
+    "need_hole": true,
+    "need_stretch": true,
     "sides_thickness": 8,
+    "customer_nickname": "用户昵称",
+    "draft": false,
+    "glass_glue_color": 0,
+    "glass_material_id": 1,
+    "bottom_glass_type": 0,
+    "bottom_thickness": 8,
+    "height": 600,
     "source": 1
 }
 ```
@@ -599,7 +600,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | &emsp;list.delivery_city | string | 收货地址市 |
 | &emsp;list.delivery_district | string | 收货地址区 |
 | &emsp;list.express_company | int | 快递公司枚举：0->顺丰，1->德邦，2->京东 |
-| &emsp;list.final_price | int | 最终价格(分) 折扣价+木架+运费+(背包) |
+| &emsp;list.final_price | int | 最终价格(分) 折扣价+木架+运费+(背包)+其它 |
+| &emsp;list.tank_factory_price | int | 鱼缸成本(分) |
+| &emsp;list.other_price | int | 其他价格(分) |
+| &emsp;list.profit_rate | int | 利润率(%) (最终报价-总成本) /最终报价 * 100 |
 | &emsp;list.front_height | int | 正面高度mm |
 | &emsp;list.upper_width | int | 上面宽度mm |
 | &emsp;list.backpack_price | int | 背包价格(分) |
@@ -671,7 +675,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | delivery_city | string | 收货地址市 |
 | delivery_district | string | 收货地址区 |
 | express_company | int | 快递公司枚举：0->顺丰，1->德邦，2->京东 |
-| final_price | int | 最终价格(分) 折扣价+木架+运费+(背包) |
+| final_price | int | 最终价格(分) 折扣价+木架+运费+(背包)+其它 |
+| tank_factory_price | int | 鱼缸成本(分) |
+| other_price | int | 其他价格(分) |
+| profit_rate | int | 利润率(%) (最终报价-总成本) /最终报价 * 100 |
 | diaphragm_thickness | int | 隔板厚mm |
 | dry_wet_separation_box_height | int | 干湿分离盒高mm |
 | filtration_bin_count | int | 过滤仓数量 |
@@ -848,11 +855,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 11
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -931,10 +938,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "宽度"
                     },
                     {
-                        "id": 37,
                         "question_id": 14,
                         "question_category_id": 8,
-                        "question_category_name": "高度"
+                        "question_category_name": "高度",
+                        "id": 37
                     }
                 ]
             },
@@ -946,16 +953,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_name": "是否打标",
                         "id": 32,
                         "question_id": 13,
-                        "question_category_id": 6
+                        "question_category_id": 6,
+                        "question_category_name": "是否打标"
                     },
                     {
+                        "id": 33,
                         "question_id": 13,
                         "question_category_id": 7,
-                        "question_category_name": "是否打标",
-                        "id": 33
+                        "question_category_name": "是否打标"
                     },
                     {
                         "question_id": 13,
@@ -1012,26 +1019,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
-        "id": 14,
         "created_time": 1682500967,
         "tank_type": "裸缸",
         "content": "问题描述内容",
         "is_active": false,
         "relate_category": [
             {
+                "id": 35,
                 "question_id": 14,
                 "question_category_id": 6,
-                "question_category_name": "长度",
-                "id": 35
+                "question_category_name": "长度"
             },
             {
-                "id": 36,
-                "question_id": 14,
                 "question_category_id": 7,
-                "question_category_name": "宽度"
+                "question_category_name": "宽度",
+                "id": 36,
+                "question_id": 14
             },
             {
                 "id": 37,
@@ -1039,8 +1044,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_id": 8,
                 "question_category_name": "高度"
             }
-        ]
-    }
+        ],
+        "id": 14
+    },
+    "code": 0
 }
 ```
 
@@ -1234,7 +1241,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- |
 | calculated_price | int | 当前尺寸计算出的价格(分) |
 | freight | int | 运费(分) |
-| final_price | int | 最终价格(分) 折扣价+木架+运费+(背包) |
+| tank_factory_price | int | 鱼缸成本(分) |
+| final_price | int | 最终价格(分) 折扣价+木架+运费+(背包)+其它 |
 
 > 请求示例:
 
