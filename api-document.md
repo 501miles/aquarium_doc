@@ -91,11 +91,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "code": 0,
+    "msg": "",
     "data": {
         "status": 1
-    },
-    "code": 0,
-    "msg": ""
+    }
 }
 ```
 
@@ -144,8 +144,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "code": 0,
     "msg": "",
     "data": {
-        "name": "nick",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4NywiaWF0IjoxNjYyMTA3NDg3LCJ1aWQiOjF9.HN5HdfH4Qw18W79--0aqAqyZwr9-r-3Q1PwIYRU3WQs",
+        "name": "nick"
     }
 }
 ```
@@ -210,9 +210,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
     "msg": "",
     "data": [
         {
-            "id": 1,
-            "name": "订单管理",
-            "selectable": false,
             "sub_modules": [
                 {
                     "id": 2,
@@ -221,27 +218,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "sub_modules": null
                 },
                 {
+                    "name": "草稿列表",
                     "selectable": true,
                     "sub_modules": null,
-                    "id": 3,
-                    "name": "草稿列表"
+                    "id": 3
                 }
-            ]
+            ],
+            "id": 1,
+            "name": "订单管理",
+            "selectable": false
         },
         {
-            "id": 4,
             "name": "问题管理",
             "selectable": false,
             "sub_modules": [
                 {
-                    "id": 5,
-                    "name": "问题列表",
                     "selectable": true,
-                    "sub_modules": null
+                    "sub_modules": null,
+                    "id": 5,
+                    "name": "问题列表"
                 }
-            ]
+            ],
+            "id": 4
         },
         {
+            "id": 6,
+            "name": "用户管理",
             "selectable": false,
             "sub_modules": [
                 {
@@ -250,9 +252,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                     "selectable": true,
                     "sub_modules": null
                 }
-            ],
-            "id": 6,
-            "name": "用户管理"
+            ]
         }
     ]
 }
@@ -485,6 +485,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "discount": 70,
+    "source": 1,
+    "order_no": "202305041003",
+    "order_time": 1683832500000,
+    "tank_type": 1,
     "stretch_list": [
         {
             "stretch_type": 0,
@@ -493,36 +498,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
             "vertical_count": 2
         }
     ],
-    "discount": 70,
-    "logo_location": 0,
-    "need_logo": true,
-    "glass_glue_color": 0,
+    "need_stretch": true,
+    "glass_material_id": 1,
     "width": 600,
-    "freight": 0,
+    "length": 600,
+    "mark": "备注",
+    "need_hole": true,
+    "need_logo": true,
+    "bottom_glass_type": 0,
+    "height": 600,
+    "customer_nickname": "用户昵称",
     "hole_list": [
         {
-            "vertical_distance": 100,
-            "vertical_location": 0,
             "horizontal_distance": 100,
             "horizontal_location": 0,
             "location": 0,
-            "diameter": 100
+            "diameter": 100,
+            "vertical_distance": 100,
+            "vertical_location": 0
         }
     ],
-    "bottom_glass_type": 0,
+    "logo_location": 0,
+    "glass_glue_color": 0,
     "bottom_thickness": 8,
-    "customer_nickname": "用户昵称",
-    "tank_type": 1,
-    "need_hole": true,
-    "need_stretch": true,
     "sides_thickness": 8,
-    "height": 600,
-    "order_no": "202305041003",
-    "order_time": 1683832500000,
-    "mark": "备注",
-    "glass_material_id": 1,
-    "length": 600,
-    "source": 1,
+    "freight": 0,
     "draft": false
 }
 ```
@@ -842,24 +842,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
+    "tank_type": "裸缸",
     "content": "问题描述内容",
     "relate_category": [
         6,
         7,
         8
-    ],
-    "tank_type": "裸缸"
+    ]
 }
 ```
 > 响应示例:
 
 ```json
 {
-    "code": 0,
     "msg": "",
     "data": {
         "id": 11
-    }
+    },
+    "code": 0
 }
 ```
 
@@ -919,7 +919,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
         "count": 12,
         "list": [
             {
-                "created_time": 1682500967,
                 "tank_type": "裸缸",
                 "content": "问题描述内容",
                 "is_active": false,
@@ -943,16 +942,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "高度"
                     }
                 ],
-                "id": 14
+                "id": 14,
+                "created_time": 1682500967
             },
             {
+                "id": 13,
+                "created_time": 1682500882,
+                "tank_type": "裸缸",
+                "content": "问题描述内容",
                 "is_active": false,
                 "relate_category": [
                     {
-                        "question_category_name": "是否打标",
                         "id": 32,
                         "question_id": 13,
-                        "question_category_id": 6
+                        "question_category_id": 6,
+                        "question_category_name": "是否打标"
                     },
                     {
                         "id": 33,
@@ -961,16 +965,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                         "question_category_name": "是否打标"
                     },
                     {
-                        "question_category_name": "是否打标",
-                        "id": 34,
                         "question_id": 13,
-                        "question_category_id": 8
+                        "question_category_id": 8,
+                        "question_category_name": "是否打标",
+                        "id": 34
                     }
-                ],
-                "id": 13,
-                "created_time": 1682500882,
-                "tank_type": "裸缸",
-                "content": "问题描述内容"
+                ]
             }
         ]
     }
@@ -1019,8 +1019,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 
 ```json
 {
-    "code": 0,
-    "msg": "",
     "data": {
         "id": 14,
         "created_time": 1682500967,
@@ -1041,13 +1039,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
                 "question_category_name": "宽度"
             },
             {
-                "question_category_id": 8,
-                "question_category_name": "高度",
                 "id": 37,
-                "question_id": 14
+                "question_id": 14,
+                "question_category_id": 8,
+                "question_category_name": "高度"
             }
         ]
-    }
+    },
+    "code": 0,
+    "msg": ""
 }
 ```
 
@@ -1356,6 +1356,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | --- | --- | --- | --- |
 | id | int | N | id |
 | device_uuid | string | Y | 温度计序列号 |
+| room_device_uuid | string | N | 室内环境温度计序列号 |
 | monitor_type | int | Y | 监测类型枚举：0->鱼缸，1->其它 |
 | temp_tank_type | int | N | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
 | tank_status | int | N | 鱼缸状态枚举: 0->新开缸，1->维护中，2->已禁用 |
@@ -1409,6 +1410,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | id | int | id |
 | created_time | int | 创建时间 |
 | device_uuid | string | 温度计序列号 |
+| room_device_uuid | string | 室内环境温度计序列号 |
 | monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
 | monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
 | temp_tank_type | int | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
@@ -1422,6 +1424,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | phone_number | string | 手机号 |
 | sms_notification_limitation_min | int | 预警短信通知时效分钟 |
 | last_temp | float | 最近一次上报的温度 |
+| room_last_temp | float | 最近一次上报的室内环境温度 |
 
 > 请求示例:
 
@@ -1453,6 +1456,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | id | int | id |
 | created_time | int | 创建时间 |
 | device_uuid | string | 温度计序列号 |
+| room_device_uuid | string | 室内环境温度计序列号 |
 | monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
 | monitor_type | int | 监测类型枚举：0->鱼缸，1->其它 |
 | temp_tank_type | int | 监测鱼缸类型枚举: 0->海缸，1->淡水缸 |
@@ -1466,6 +1470,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjYwNDgwMTY2MjEwNzQ4
 | phone_number | string | 手机号 |
 | sms_notification_limitation_min | int | 预警短信通知时效分钟 |
 | last_temp | float | 最近一次上报的温度 |
+| room_last_temp | float | 最近一次上报的室内环境温度 |
 
 > 请求示例:
 
